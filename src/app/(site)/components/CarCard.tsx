@@ -1,37 +1,35 @@
 // components/CarCard.tsx
 "use client";
 
-// Import des images de la voiture
-import peugeot3008 from "../../../../public/images/peugeot3008.png";
-import peugeot30082 from "../../../../public/images/peugeot30082.png";
-import peugeot30083 from "../../../../public/images/peugeot30083.png";
-import peugeot30084 from "../../../../public/images/peugeot30084.png";
-import duster from "../../../../public/images/duster.png";
-import duster2 from "../../../../public/images/duster2.png";
-import duster3 from "../../../../public/images/duster3.png";
-import duster4 from "../../../../public/images/duster4.png";
-
 // Import des icônes de flèche pour la galerie
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // Import des modules nécessaires
 import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
-
 import { motion } from "framer-motion";
 
 // Interface pour représenter les données de la voiture
 interface CarData {
-  title: any;
+  title: string;
   price: any;
   year: any;
   mileage: number;
-  features: string[];
-  equipments: string[];
+  features: string;
+  equipments: string;
+  photos: string[];
 }
 
 // Composant CarCard
-function CarCard({ title, price, year, mileage, }: CarData) {
+function CarCard({
+  title,
+  price,
+  year,
+  mileage,
+  features,
+  equipments,
+  photos,
+}: CarData) {
   // Etat pour suivre l'index de l'image actuelle dans la galerie
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -95,22 +93,13 @@ function CarCard({ title, price, year, mileage, }: CarData) {
     console.log(formData);
   };
   // Données de la voiture
-  const carData: CarData = {
-    title: "Peugeot 3008",
-    price: "25000 €",
-    year: "2018",
-    mileage: parseInt("25000"),
-    features: ["PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8", "Bleu Célèbes"],
-    equipments: [
-      "Démarrage mains libres",
-      "Air conditionné automatique bi-zone avec aérateurs aux places arrière",
-      "Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,",
-      "Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
-    ],
-  };
 
   // Tableau des sources des images pour la galerie
-  const carImageSrc = [peugeot30082.src, peugeot30083.src, peugeot30084.src, duster.src, duster2.src, duster3.src, duster4.src];
+  const carImageSrc: string[] = [];
+
+  photos.map((photo) => {
+    carImageSrc.push(photo);
+  });
 
   // Gestionnaire de clic pour passer à l'image précédente dans la galerie
   const handlePrevClick = () => {
@@ -149,7 +138,7 @@ function CarCard({ title, price, year, mileage, }: CarData) {
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
-          src={peugeot3008}
+          src={photos[0]}
           width={500}
           height={500}
           alt="logo account"
@@ -167,7 +156,7 @@ function CarCard({ title, price, year, mileage, }: CarData) {
           <div className="flex flex-col justify-center items-center">
             <Image
               className="vt2 h-[400px] w-[350px] md:w-[325px] object-contain -mt-32"
-              src={carImageSrc[currentImageIndex].toString()}
+              src={carImageSrc[currentImageIndex]}
               width={500}
               height={500}
               alt={`Image ${currentImageIndex + 1}`}
@@ -211,28 +200,7 @@ function CarCard({ title, price, year, mileage, }: CarData) {
           <h3 className="flex justify-center items-center text-lg font-bold">
             Caractéristiques :
           </h3>
-          <ul>
-            {carData.features.map(
-              (
-                feature:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | React.PromiseLikeOfReactNode
-                  | null
-                  | undefined,
-                index: React.Key | null | undefined
-              ) => (
-                <li key={index}>{feature}</li>
-              )
-            )}
-          </ul>
+          <p>{features}</p>
         </div>
 
         {/* Équipements et Options */}
@@ -240,29 +208,7 @@ function CarCard({ title, price, year, mileage, }: CarData) {
           <h3 className="text-lg font-bold flex justify-center items-center">
             Équipements et Options :
           </h3>
-          <ul>
-            {carData.equipments.map(
-              (
-                equipment:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      // Import des images de la voiture
-                      any, // Import des images de la voiture
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | React.PromiseLikeOfReactNode
-                  | null
-                  | undefined,
-                index: React.Key | null | undefined
-              ) => (
-                <li key={index}>{equipment}</li>
-              )
-            )}
-          </ul>
+          <p>{equipments}</p>
         </div>
       </section>
 

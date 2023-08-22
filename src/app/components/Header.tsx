@@ -2,7 +2,6 @@ import Image from "next/image";
 import logo from "../../../public/images/logo.png";
 import account from "../../../public/images/account.png";
 import Link from "next/link";
-import AuthForm from "../../app/components/../connexion/components/AuthForm";
 export const Header = () => {
   return (
     <header
@@ -70,7 +69,6 @@ export const Header = () => {
               <p className="border-2 border-secondaryColor rounded-xl p-1 pl-4 lg:text-lg text-center lg:mt-48">
                 Connexion
               </p>
-              <AuthForm />
             </div>
           </li>
         </ul>

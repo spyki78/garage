@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Filter from "./../components/../(site)/components/Filter";
+import Filter from "../../components/../(site)/components/Filter";
 
 function page() {
   return (
@@ -8,5 +8,4 @@ function page() {
     </main>
   );
 }
-
 export default page;

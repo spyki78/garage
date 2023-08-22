@@ -1,7 +1,7 @@
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import ScrollToTopButton from "./components/ScrollToTopButton";
-import { AuthContext } from "./context/AuthContext";
+
 import "./globals.css";
 import type { Metadata } from "next";
 

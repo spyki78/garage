@@ -26,13 +26,15 @@ interface Car {
   year: number;
   mileage: number;
   price: number;
-  features: any;
-  equipments: any;
+  features: string;
+  equipments: string;
+  photos:string[];
   
 }
 
 // Données des voitures
 const carsData: Car[] = [
+
   // Ajoutez plus de données de voitures si nécessaire
   {
     id: 1,
@@ -43,6 +45,12 @@ const carsData: Car[] = [
     features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
     equipments:
       "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
+      photos:[
+        "/images/duster.png",  
+        "/images/duster2.png", 
+        "/images/duster3.png",
+        "/images/duster4.png"
+      ]
   },
   {
     id: 2,
@@ -53,6 +61,12 @@ const carsData: Car[] = [
     features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
     equipments:
       "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
+      photos:[
+        "/images/duster.png",  
+        "/images/duster2.png", 
+        "/images/duster3.png",
+        "/images/duster4.png"
+      ]
   },
 
   {
@@ -64,6 +78,12 @@ const carsData: Car[] = [
     features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
     equipments:
       "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
+      photos:[
+        "/images/duster.png",  
+        "/images/duster2.png", 
+        "/images/duster3.png",
+        "/images/duster4.png"
+      ]
   },
 
   {
@@ -75,11 +95,16 @@ const carsData: Car[] = [
     features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
     equipments:
       "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
+      photos:[
+        "/images/duster.png",  
+        "/images/duster2.png", 
+        "/images/duster3.png",
+        "/images/duster4.png"
+      ]
   },
 
   // Ajoutez d'autres voitures ici si nécessaire
 ];
-
 
 // État initial du filtre
 const initialFilterState: FilterState = {
@@ -91,10 +116,10 @@ const initialFilterState: FilterState = {
 };
 
 // Composant FilterComponent
-const FilterComponent: React.FC<FilterProps> = ({
+const FilterComponent = ({
   onFilterChange,
   carsData,
-}) => {
+}:FilterProps) => {
 
   // États pour le filtre et la visibilité du filtre
   const [filter, setFilter] = useState<FilterState>(initialFilterState);
@@ -114,7 +139,6 @@ const FilterComponent: React.FC<FilterProps> = ({
   };
 
   // Gestionnaire de changement du kilométrage
-
  const handleMileageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedMileage = Number(event.target.value);
     setFilter({ ...filter, mileage: selectedMileage });
@@ -148,10 +172,10 @@ const FilterComponent: React.FC<FilterProps> = ({
       const yearMatch = filter.year === 0 || car.year === filter.year;
       const mileageMatch =
         filter.mileage === 0 ||
-        (car.mileage >= filter.mileage && car.mileage <= filter.mileage + 1000);
+        (car.mileage >= filter.mileage && car.mileage <= filter.mileage);
       const priceMatch =
         filter.price === 0 ||
-        (car.price >= filter.price && car.price <= filter.price + 1000);
+        (car.price >= filter.price && car.price <= filter.price);
 
       // Ajout de conditions pour le kilométrage et le prix
       const showCar =
@@ -249,7 +273,7 @@ const FilterComponent: React.FC<FilterProps> = ({
             mileage={car.mileage}
             features={car.features}
             equipments={car.equipments}
-          />
+            photos={car.photos}          />
         ))}
       </div>
     </>
