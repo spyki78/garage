@@ -34,7 +34,7 @@ const ScrollToTopButton = () => {
       right: "-10px", // Ajustez cette valeur selon vos besoins
       visibility: isVisible ? "visible" : "hidden",
     }}
-      className="scrollToTopButton hidden sm:block"
+      className="scrollToTopButton"
     
       onClick={scrollToTop}
     >
