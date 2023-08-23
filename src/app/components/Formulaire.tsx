@@ -49,8 +49,8 @@ function Formulaire() {
   };
   return (
     <div className="w-10/12 flex justify-center">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="subject">Objet :</label>
+      <form className="top" onSubmit={handleSubmit}>
+        <label  htmlFor="subject">Objet :</label>
         <input
           type="text"
           id="subject"

@@ -52,7 +52,7 @@ const LeaveReview = () => {
   };
 
   return (
-    <div className="shadow-lg p-5 lg:h-[400px] lg:w-[400px] md:mt-10 md:mb-10 my-auto mx-auto">
+    <div className=" top shadow-lg p-5 lg:h-[400px] lg:w-[400px] md:mt-10 md:mb-10 my-auto mx-auto">
       <h2 className="avis text-center">Laisser un avis</h2>
       <form onSubmit={handleSubmit}>
         <div className="pt-10">
