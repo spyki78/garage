@@ -5,7 +5,6 @@ import { useState, ChangeEvent, FormEvent } from "react";
 
 // Définition du composant LeaveReview
 const LeaveReview = () => {
-
   // Etat pour limiter le nombre de caractères
   const MAX_NAME_LENGTH = 20;
   const MAX_REVIEW_LENGTH = 80;
@@ -21,7 +20,6 @@ const LeaveReview = () => {
 
   // Gestionnaire de changement du nom
   const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-
     // Gestionnaire de limitation de caractère sur Name
     const newName = e.target.value.slice(0, MAX_NAME_LENGTH);
     setName(e.target.value);
@@ -29,7 +27,6 @@ const LeaveReview = () => {
 
   // Gestionnaire de changement de la note
   const handleReviewChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    
     //Gestionnaire de limitation de caractère sur Commentaire
     const newReview = e.target.value.slice(0, MAX_REVIEW_LENGTH);
     setReview(e.target.value);
@@ -93,16 +90,19 @@ const LeaveReview = () => {
             required
           >
             <option value="0">Sélectionner</option>
-            <option value="1">★☆☆☆☆</option>
-            <option value="2">★★☆☆☆</option>
-            <option value="3">★★★☆☆</option>
-            <option value="4">★★★★☆</option>
-            <option value="5">★★★★★</option>
+            <option className=" text-primaryColor font-bold text-xl" value="1">★☆☆☆☆</option>
+            <option className=" text-primaryColor font-bold text-xl" value="2">★★☆☆☆</option>
+            <option className=" text-primaryColor font-bold text-xl" value="3">★★★☆☆</option>
+            <option className=" text-primaryColor font-bold text-xl" value="4">★★★★☆</option>
+            <option className=" text-primaryColor font-bold text-xl" value="5">★★★★★</option>
           </select>
         </div>
 
-        <div className=" py-2 mt-5 text-center bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl">
-          <button className="" type="submit">
+        <div className="w-full">
+          <button
+            className="w-full py-2 mt-5 text-center bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl"
+            type="submit"
+          >
             Soumettre
           </button>
         </div>

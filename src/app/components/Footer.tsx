@@ -20,7 +20,7 @@ export const Footer = () => {
           />
         </div>
         <div className="mb-4 py-5 text-center flex flex-col ">
-          <h3 className="text-center font-bold">Horaires douverture</h3>
+          <h3 className="text-center font-bold">Horaires</h3>
 
           <ul className="mt-2">
             <li>Lundi : 8h45 - 12h00 14h00 - 18h00 </li>
@@ -33,13 +33,16 @@ export const Footer = () => {
           </ul>
         </div>
         <div className="sm:text-center sm:mr-5 text-right">
-          <h3 className="md:mr-5 text-center text-lg font-bold border-2 border-secondaryColor rounded-xl p-3 pl-4 lg:text-lg">
+          <h3 className="md:mr-5 text-center text-lg font-bold p-3 pl-4 lg:text-lg">
             Contactez-nous
           </h3>
           <p className="mt-2 text-center">123 Rue du Commerce</p>
           <p>33000 Bordeaux 05 80 45 78 54</p>
         </div>
       </section>
+      <div className="flex flex-col items-center">
+        <p className="sign text-center lg:-mt-5">@spyki2023</p>
+      </div>
     </footer>
   );
 };

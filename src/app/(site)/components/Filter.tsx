@@ -28,13 +28,11 @@ interface Car {
   price: number;
   features: string;
   equipments: string;
-  photos:string[];
-  
+  photos: string[];
 }
 
 // Données des voitures
 const carsData: Car[] = [
-
   // Ajoutez plus de données de voitures si nécessaire
   {
     id: 1,
@@ -42,15 +40,16 @@ const carsData: Car[] = [
     year: 2018,
     mileage: 25000,
     price: 25000,
-    features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
+    features:
+      "ESSENCE PLUG-IN HYBRID HYBRID4 300 e-EAT8 Cylindrée 1258 cm3 Bleu Célèbes",
     equipments:
-      "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
-      photos:[
-        "/images/duster.png",  
-        "/images/duster2.png", 
-        "/images/duster3.png",
-        "/images/duster4.png"
-      ]
+      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
+    photos: [
+      "/images/voitures/peugeot/peugeot.png",
+      "/images/voitures/peugeot/peugeot2.png",
+      "/images/voitures/peugeot/peugeot3.png",
+      "/images/voitures/peugeot/peugeot4.png",
+    ],
   },
   {
     id: 2,
@@ -58,15 +57,16 @@ const carsData: Car[] = [
     year: 2015,
     mileage: 30000,
     price: 18000,
-    features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
+    features:
+      "ESSENCE ECO-G 100 4x2 Cylindrée 999 cm3 Puissance maxi kw Ch74 100 Orange sable",
     equipments:
-      "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
-      photos:[
-        "/images/duster.png",  
-        "/images/duster2.png", 
-        "/images/duster3.png",
-        "/images/duster4.png"
-      ]
+      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
+    photos: [
+      "/images/voitures/duster/duster.png",
+      "/images/voitures/duster/duster2.png",
+      "/images/voitures/duster/duster3.png",
+      "/images/voitures/duster/duster4.png",
+    ],
   },
 
   {
@@ -75,32 +75,34 @@ const carsData: Car[] = [
     year: 2011,
     mileage: 90000,
     price: 8000,
-    features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
+    features:
+      "	DIESEL 4 cylindres en ligne 8 soupapes Cylindrée 1461 cm3 Gris Platine métallisé",
     equipments:
-      "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
-      photos:[
-        "/images/duster.png",  
-        "/images/duster2.png", 
-        "/images/duster3.png",
-        "/images/duster4.png"
-      ]
+      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
+    photos: [
+      "/images/voitures/scenic3/scenic.png",
+      "/images/voitures/scenic3/scenic2.png",
+      "/images/voitures/scenic3/scenic3.png",
+      "/images/voitures/scenic3/scenic4.png",
+    ],
   },
 
   {
     id: 4,
-    name: "Duster",
+    name: "Citroen C4",
     year: 2015,
     mileage: 30000,
     price: 18000,
-    features: "PLUG-IN HYBRID ESSENCE HYBRID4 300 e-EAT8 Bleu Célèbes",
+    features:
+      "ESSENCE II (2) 1.2 PURETECH 110 FEEL Cylindrée 1199 cm3 Rouge Aden",
     equipments:
-      "Démarrage mains libres,Air conditionné automatique bi-zone avec aérateurs aux places arrière,Drive Mode : Choix de 2 modes de conduite (Eco ou Sport) pour les motorisations à boite automatique,Drive Mode : Rétroviseurs extérieurs électriques et dégivrants.",
-      photos:[
-        "/images/duster.png",  
-        "/images/duster2.png", 
-        "/images/duster3.png",
-        "/images/duster4.png"
-      ]
+      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
+    photos: [
+      "/images/voitures/citroenc4/citroen.png",
+      "/images/voitures/citroenc4/citroen2.png",
+      "/images/voitures/citroenc4/citroen3.png",
+      "/images/voitures/citroenc4/citroen4.png",
+    ],
   },
 
   // Ajoutez d'autres voitures ici si nécessaire
@@ -116,11 +118,7 @@ const initialFilterState: FilterState = {
 };
 
 // Composant FilterComponent
-const FilterComponent = ({
-  onFilterChange,
-  carsData,
-}:FilterProps) => {
-
+const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
   // États pour le filtre et la visibilité du filtre
   const [filter, setFilter] = useState<FilterState>(initialFilterState);
   const [filterVisible, setFilterVisible] = useState<boolean>(true);
@@ -139,16 +137,16 @@ const FilterComponent = ({
   };
 
   // Gestionnaire de changement du kilométrage
- const handleMileageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleMileageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedMileage = Number(event.target.value);
     setFilter({ ...filter, mileage: selectedMileage });
   };
 
- // Gestionnaire de changement du prix
- const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  const selectedPrice = Number(event.target.value);
-  setFilter({ ...filter, price: selectedPrice });
-};
+  // Gestionnaire de changement du prix
+  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedPrice = Number(event.target.value);
+    setFilter({ ...filter, price: selectedPrice });
+  };
 
   // Gestionnaire d'application du filtre
   const handleFilterApply = () => {
@@ -166,6 +164,7 @@ const FilterComponent = ({
     });
     setCarsDataFilter(carsData);
   };
+
   // Effet de mise à jour des voitures filtrées lors du changement du filtre
   useEffect(() => {
     const filtered = carsData.filter((car) => {
@@ -191,18 +190,18 @@ const FilterComponent = ({
 
   return (
     <>
-      <div className=" flex flex-col justify-center items-center w-full lg:mt-20 md:mt-40">
+      <div className="filtre flex flex-col justify-center items-center w-full lg:mt-20 md:mt-40">
         <h2 className="text-xl font-bold mb-4">Filtrer les voitures</h2>
         {filterVisible && (
-          <div className=" flex flex-col justify-center gap-4 lg:flex-row md:flex-row sm:flex-col ">
+          <div className="flex flex-col justify-center gap-4 lg:flex-row md:flex-row sm:flex-col ">
             <div className="mb-4">
               <label htmlFor="year" className="block font-semibold mb-1">
-                Année : {filter.year === 0 ? "Toutes" : filter.year}
+                Année : {filter.year === 0 ? "" : filter.year}
               </label>
               <input
                 type="range"
                 id="year"
-                className="w-full"
+                className="w-full custom-input-range"
                 min={2000}
                 max={2020}
                 step={1}
@@ -216,31 +215,31 @@ const FilterComponent = ({
             </div>
             <div>
               <label htmlFor="mileage" className="block font-semibold mb-1">
-                Kilométrage : {filter.mileage === 0 ? "Tous" : filter.mileage}
+                Kilométrage : {filter.mileage === 0 ? "" : filter.mileage}
               </label>
               <input
                 type="range"
                 id="mileage"
-                className="w-full"
+                className="w-full custom-input-range"
                 min={20000}
-                max={40000}
+                max={100000}
                 step={1000}
                 value={filter.mileage}
                 onChange={handleMileageChange}
               />
               <div className="flex justify-between">
                 <span>20000</span>
-                <span>40000</span>
+                <span>100000</span>
               </div>
             </div>
             <div className="mb-4">
               <label htmlFor="price" className="block font-semibold mb-1">
-                Prix : {filter.price === 0 ? "Tous" : `${filter.price}€`}
+                Prix : {filter.price === 0 ? "" : `${filter.price}€`}
               </label>
               <input
                 type="range"
                 id="price"
-                className="w-full"
+                className=" w-full custom-input-range"
                 min={0}
                 max={50000}
                 step={1000}
@@ -273,7 +272,8 @@ const FilterComponent = ({
             mileage={car.mileage}
             features={car.features}
             equipments={car.equipments}
-            photos={car.photos}          />
+            photos={car.photos}
+          />
         ))}
       </div>
     </>
@@ -304,7 +304,7 @@ const Home: React.FC = () => {
     handleFilterChange(initialFilterState);
   }, []);
   return (
-    <div className=" my-auto mx-auto mt-14">
+    <div className=" my-auto mx-auto mt-44">
       <FilterComponent
         onFilterChange={handleFilterChange}
         carsData={carsData}

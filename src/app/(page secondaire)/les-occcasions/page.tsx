@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Filter from "../../components/../(site)/components/Filter";
+import Formulaire from "@/app/components/Formulaire";
 
 function page() {
   return (
-    <main className="flex flex-col md:flex-row items-center md:items-start justify-around max-h-auto w-full">
+    <main className="flex flex-col items-center justify-center max-h-auto w-full">
       <Filter />
+    <Formulaire/>
     </main>
   );
 }

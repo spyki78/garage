@@ -30,6 +30,7 @@ function CarCard({
   equipments,
   photos,
 }: CarData) {
+
   // Etat pour suivre l'index de l'image actuelle dans la galerie
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -51,7 +52,7 @@ function CarCard({
     lastName: "",
     email: "",
     phone: "",
-    message: "",
+    message: "Bonjour, je suis intéressé par ce véhicule pourriez-vous me contacter merci.",
   });
 
   // Gestionnaire de clic sur l'image principale pour afficher/masquer la galerie
@@ -78,7 +79,7 @@ function CarCard({
 
     // Appliquer une limite de caractères pour le champ message à 100 caractères
     if (name === "message") {
-      const maxChars = 100;
+      const maxChars = 500;
       truncatedValue = value.slice(0, maxChars);
     }
 
@@ -92,8 +93,7 @@ function CarCard({
     // Ici, vous pouvez envoyer les données du formulaire au backend ou effectuer d'autres actions.
     console.log(formData);
   };
-  // Données de la voiture
-
+  
   // Tableau des sources des images pour la galerie
   const carImageSrc: string[] = [];
 
@@ -130,11 +130,10 @@ function CarCard({
   return (
     <div className="p-4 md:p-0 md:w-[300px] mx-auto md:mt-80 lg:mt-80">
       <motion.div
-        className="cursor-pointer flex justify-center"
+        className="flex justify-center"
         initial={{ opacity: initialOpacity ? 0 : 1 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-        onClick={handleImageClick}
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
@@ -144,13 +143,24 @@ function CarCard({
           alt="logo account"
         />
       </motion.div>
+      <div className="mt-4">
+  <h3
+    className="m-24 cursor-pointer text-lg font-bold flex justify-center rounded-xl bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50"
+    onClick={() => setShowGallery(!showGallery)}
+  >
+    Galerie
+  </h3>
+</div>
 
       {/* Photo Gallery (Carousel) */}
       {showGallery && (
         <div className="gal1">
-          <h3 className="m-24 text-lg font-bold flex justify-center border-2 rounded-xl border-primaryColor">
-            Galerie
+          <h3 className="texti">
+            hidden
           </h3>
+
+      
+     
 
           {/* Affichage de l'image actuelle */}
           <div className="flex flex-col justify-center items-center">
@@ -291,7 +301,7 @@ function CarCard({
               onChange={handleChange}
               rows={4}
               className=" mess w-full border border-gray-300 p-2 rounded mb-2"
-              placeholder="Bonjour, je suis intéréssé par ce vehicule pourriez-vous me contacter merci."
+              placeholder=""
               required
             ></textarea>
             {/* Bouton Soumettre */}
