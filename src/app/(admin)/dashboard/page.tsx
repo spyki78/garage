@@ -31,6 +31,7 @@ const LoginPage = () => {
             type="email"
             id="email"
             className="w-full p-2 border rounded-md"
+            placeholder='e-mail'
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -42,6 +43,7 @@ const LoginPage = () => {
             type="password"
             id="password"
             className="w-full p-2 border rounded-md"
+            placeholder='password'
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
