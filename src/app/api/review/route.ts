@@ -8,7 +8,6 @@ import { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { UserBodyScheme } from "../auth/[...nextauth]/route";
 
-
 /* pour configurer un shéma de user souhaitez pour la validation du formulaire*/
 const ReviewBodyScheme = z.object({
   name: z
@@ -54,9 +53,6 @@ export async function POST(request: Request) {
     /*Body doit etre identique aux configurations sinon retour error*/
     const reviewBody = ReviewBodyScheme.parse(body);
 
-    
-  
-
     /*securisation du mot de passe*/
     const review = await prisma.review.create({
       data: {
@@ -64,7 +60,6 @@ export async function POST(request: Request) {
         message: reviewBody.message,
         rating: reviewBody.rating,
       },
-
     });
 
     return NextResponse.json(review, { status: 201 });
@@ -73,7 +68,6 @@ export async function POST(request: Request) {
     return new NextResponse(error, { status: 500 });
   }
 }
-
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
