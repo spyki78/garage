@@ -48,12 +48,12 @@ export async function POST(request: Request) {
   try {
     /*recupere les données du body*/
     const body = await request.json();
-    console.log(body);
-
+  
     /*Body doit etre identique aux configurations sinon retour error*/
     const reviewBody = ReviewBodyScheme.parse(body);
 
     /*securisation du mot de passe*/
+    
     const review = await prisma.review.create({
       data: {
         name: reviewBody.name,
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
 }
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as any,
   providers: [
     // utilisation d'un non provider / general avec mail et mot de passe
     CredentialsProvider({
@@ -84,7 +84,7 @@ export const authOptions: AuthOptions = {
         const userBody = UserBodyScheme.parse(credentials);
         const user = await prisma.user.findUnique({
           where: {
-            email: credentials.email,
+            email:credentials.email
           },
         });
 
