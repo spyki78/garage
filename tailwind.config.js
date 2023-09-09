@@ -9,7 +9,7 @@ module.exports = {
     colors: {
       primaryColor: "#f7b132",
       secondaryColor: "#29bb9c",
-      thirdColor:"#000",
+      thirdColor:"rgb(220 38 38)",
       primaryColorHover: "#",
     },
   },

@@ -2,7 +2,7 @@ import { Testimonial } from "./Testimonial";
 import LeaveReview from "./LeaveReview";
 import avis from "./../../../../public/images/avis.jpg";
 
-export const SectionTestimonials = () => {
+export const SectionTestimonials = ({reviews}:any) => {
   // Tableau des avis
   const array = [
     {
@@ -40,13 +40,13 @@ export const SectionTestimonials = () => {
       </div>
       <div className=" ecran grid lg:grid-cols-3 lg:gap-20 md:grid-cols-2 md:gap-14 sm:grid-cols-1 gap-10 mt-10">
          {/* Affichage des témoignages */}
-        {array.map(({ id, image, reviews, name, comment }) => (
+        {reviews.map(({ id, message, name, rating } :any) => (
           <Testimonial
             key={id}
-            image={image}
-            reviews={reviews}
+            image={avis}
+            message={message}
             name={name}
-            comment={comment}
+            rating={rating}
           />
         ))}
       </div>

@@ -30,7 +30,6 @@ function CarCard({
   equipments,
   photos,
 }: CarData) {
-
   // Etat pour suivre l'index de l'image actuelle dans la galerie
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -52,7 +51,8 @@ function CarCard({
     lastName: "",
     email: "",
     phone: "",
-    message: "Bonjour, je suis intéressé par ce véhicule pourriez-vous me contacter merci.",
+    message:
+      "Bonjour, je suis intéressé par ce véhicule pourriez-vous me contacter merci.",
   });
 
   // Gestionnaire de clic sur l'image principale pour afficher/masquer la galerie
@@ -93,7 +93,7 @@ function CarCard({
     // Ici, vous pouvez envoyer les données du formulaire au backend ou effectuer d'autres actions.
     console.log(formData);
   };
-  
+
   // Tableau des sources des images pour la galerie
   const carImageSrc: string[] = [];
 
@@ -144,23 +144,18 @@ function CarCard({
         />
       </motion.div>
       <div className="mt-4">
-  <h3
-    className="m-24 cursor-pointer text-lg font-bold flex justify-center rounded-xl bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50"
-    onClick={() => setShowGallery(!showGallery)}
-  >
-    Galerie
-  </h3>
-</div>
+        <h3
+          className="m-24 cursor-pointer text-lg font-bold flex justify-center rounded-xl bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50"
+          onClick={() => setShowGallery(!showGallery)}
+        >
+          Galerie
+        </h3>
+      </div>
 
       {/* Photo Gallery (Carousel) */}
       {showGallery && (
         <div className="gal1">
-          <h3 className="texti">
-            hidden
-          </h3>
-
-      
-     
+          <h3 className="texti">hidden</h3>
 
           {/* Affichage de l'image actuelle */}
           <div className="flex flex-col justify-center items-center">

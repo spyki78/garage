@@ -9,40 +9,59 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model User {
   id           Int              @id @default(autoincrement())
-  name         String?
   email        String           @unique
-  profileViews Int              @default(0)
-  role         Role             @default(USER)
-  coinflips    Boolean[]
-  posts        Post[]
-  city         String
-  country      String
-  profile      ExtendedProfile?
-  pets         Json
+  hashed_password     String
+  role         Role             @default(EMPLOYEE)
+  //posts        Post[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
 }
 
-model ExtendedProfile {
-  id     Int     @id @default(autoincrement())
-  userId Int?    @unique
-  bio    String?
-  User   User?   @relation(fields: [userId], references: [id])
+model Annonce {
+ id            Int              @id @default(autoincrement())
+ title         Int
+ price         Float
+ year          DateTime
+ mileage       Int
+ features      String[]
+ equipments    String[]
+ photos        String[]
+
+ created_at DateTime @default(now())
+ updated_at DateTime @updatedAt
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  published Boolean @default(true)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
-  comments  Json
-  views     Int     @default(0)
-  likes     Int     @default(0)
+model review {
+ id            Int              @id @default(autoincrement())
+ name          String
+ message       String
+ rating        Int
+ isValid       Boolean @default(false)
+
+ created_at DateTime @default(now())
+ updated_at DateTime @updatedAt
 }
+
+model contact {
+id            Int              @id @default(autoincrement())
+object        String
+firstName     String
+lastName      String
+email         String
+phone         Int
+message       String
+
+created_at DateTime @default(now())
+updated_at DateTime @updatedAt
+}
+
 
 enum Role {
-  USER
+  EMPLOYEE
   ADMIN
 }
 

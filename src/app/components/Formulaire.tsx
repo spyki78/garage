@@ -19,7 +19,7 @@ function Formulaire() {
     const { name, value } = e.target;
     let truncatedValue = value;
 
-    // Appliquer une limite de caractères pour les champs prénom, nom, e-mail et téléphone à 30 caractères
+    // Appliquer une limite de caractères pour les champs prénom, nom, e-mail et téléphone à 80 caractères
     if (
       name === "firstName" ||
       name === "lastName" ||

@@ -121,7 +121,7 @@ const initialFilterState: FilterState = {
 const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
   // États pour le filtre et la visibilité du filtre
   const [filter, setFilter] = useState<FilterState>(initialFilterState);
-  const [filterVisible, setFilterVisible] = useState<boolean>(true);
+  const [filterVisible,] = useState<boolean>(true);
   const [carsDataFilter, setCarsDataFilter] = useState<Car[]>([]);
   console.log(carsDataFilter);
   useEffect(() => {

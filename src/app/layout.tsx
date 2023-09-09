@@ -1,3 +1,4 @@
+import { ToasterContext } from "../../context/ToasterContext";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import ScrollToTopButton from "./components/ScrollToTopButton";
@@ -18,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body>
+        <ToasterContext/>
           <Header />
           {children}
           <ScrollToTopButton />

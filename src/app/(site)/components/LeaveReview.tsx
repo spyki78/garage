@@ -2,53 +2,60 @@
 
 // Importations des modules nécessaires
 import { useState, ChangeEvent, FormEvent } from "react";
+import { toast } from "react-hot-toast";
 
 // Définition du composant LeaveReview
 const LeaveReview = () => {
-  // Etat pour limiter le nombre de caractères
-  const MAX_NAME_LENGTH = 20;
-  const MAX_REVIEW_LENGTH = 80;
 
   // État pour le nom de l'utilisateur
   const [name, setName] = useState("");
 
   // État pour l'avis de l'utilisateur
-  const [review, setReview] = useState("");
+  const [message, setMessage] = useState("");
 
   // État pour la note attribuée par l'utilisateur
   const [rating, setRating] = useState(0);
 
-  // Gestionnaire de changement du nom
-  const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-    // Gestionnaire de limitation de caractère sur Name
-    const newName = e.target.value.slice(0, MAX_NAME_LENGTH);
-    setName(e.target.value);
-  };
 
-  // Gestionnaire de changement de la note
-  const handleReviewChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    //Gestionnaire de limitation de caractère sur Commentaire
-    const newReview = e.target.value.slice(0, MAX_REVIEW_LENGTH);
-    setReview(e.target.value);
-  };
-
-  // Gestionnaire de soumission du formulaire
-  const handleRatingChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setRating(Number(e.target.value));
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formData = {
+      name,
+      message,
+      rating,
+    };
 
-    // Envoyer  le nom l'avis et la note au backend pour les traiter ou les sauvegarder
-    console.log("Nom :", name);
-    console.log("Avis soumis :", review);
-    console.log("Note attribuée :", rating);
+    console.log(formData);
 
-    // Réinitialiser le formulaire après l'envoi
-    setName("");
-    setReview("");
-    setRating(0);
+    /* creation donnée dans API*/
+    await fetch("/api/review", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+
+      /*pour envoi API avec ou pas error*/
+      body: JSON.stringify(formData),
+    }).then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        res.json().then((errors: any) => {
+            errors.map((error: any) => {
+                /* message qui apparait dynamiquement*/
+                console.log(error.message);
+                toast.error(error.message)
+            });
+        });
+      }
+      else {
+        toast.success("Votre avis est crée")
+        
+      }
+    });
+
+    
   };
 
   return (
@@ -62,8 +69,7 @@ const LeaveReview = () => {
             type="text"
             id="name"
             value={name}
-            onChange={handleNameChange}
-            maxLength={MAX_NAME_LENGTH}
+            onChange={(e) => setName(e.target.value)}
             required
           />
         </div>
@@ -74,9 +80,8 @@ const LeaveReview = () => {
             className="
           parler ml-5"
             id="review"
-            value={review}
-            onChange={handleReviewChange}
-            maxLength={MAX_REVIEW_LENGTH}
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
             required
           />
         </div>
@@ -86,7 +91,7 @@ const LeaveReview = () => {
             className="ml-5"
             id="rating"
             value={rating}
-            onChange={handleRatingChange}
+            onChange={(e) =>  setRating(Number(e.target.value))}
             required
           >
             <option value="0">Sélectionner</option>
