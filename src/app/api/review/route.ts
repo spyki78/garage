@@ -80,7 +80,7 @@ export const authOptions: AuthOptions = {
         password: { label: "password", type: "password" },
       },
 
-      async authorize(credentials:any) {
+      async authorize(credentials: any) {
         const userBody = UserBodyScheme.parse(credentials);
         const user = await prisma.user.findUnique({
           where: {
