@@ -1,12 +1,9 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import {prisma} from "@/../libs/prismadb";
+import { prisma } from "@/../libs/prismadb";
 import NextAuth, { AuthOptions } from "next-auth";
 import { z } from "zod";
 import bcrypt from "bcrypt";
-
-
-
 
 const UserBodyScheme = z.object({
   email: z
@@ -24,7 +21,6 @@ const UserBodyScheme = z.object({
     .trim(),
 });
 
-
 type User = {
   id: number;
   name: string;
@@ -33,17 +29,17 @@ type User = {
 };
 
 export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as any,
   providers: [
-    // utilisation d'un non provider / general avec mail et mot de passe 
+    // utilisation d'un non provider / general avec mail et mot de passe
     CredentialsProvider({
       name: "credentials",
       credentials: {
         email: { label: "email", type: "email" },
         password: { label: "password", type: "password" },
       },
-      
-      async authorize(credentials) {
+
+      async authorize(credentials: any) {
         const userBody = UserBodyScheme.parse(credentials);
         const user = await prisma.user.findUnique({
           where: {
@@ -57,15 +53,14 @@ export const authOptions: AuthOptions = {
 
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
-          user.hashed_password,
+          user.hashed_password
         );
 
         if (!isCorrectPassword) {
           throw new Error("Invalide Credential");
         }
 
-       
-        return user as any
+        return user as any;
       },
     }),
   ],

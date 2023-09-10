@@ -48,12 +48,12 @@ export async function POST(request: Request) {
   try {
     /*recupere les données du body*/
     const body = await request.json();
-  
+
     /*Body doit etre identique aux configurations sinon retour error*/
     const reviewBody = ReviewBodyScheme.parse(body);
 
     /*securisation du mot de passe*/
-    
+
     const review = await prisma.review.create({
       data: {
         name: reviewBody.name,
@@ -80,11 +80,11 @@ export const authOptions: AuthOptions = {
         password: { label: "password", type: "password" },
       },
 
-      async authorize(credentials) {
+      async authorize(credentials:any) {
         const userBody = UserBodyScheme.parse(credentials);
         const user = await prisma.user.findUnique({
           where: {
-            email:credentials.email
+            email: credentials.email,
           },
         });
 
@@ -101,7 +101,9 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalide Credential");
         }
 
-        return user as any;
+        return {
+          email: user.email,
+        } as any;
       },
     }),
   ],
