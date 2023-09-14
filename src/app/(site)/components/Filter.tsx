@@ -121,7 +121,7 @@ const initialFilterState: FilterState = {
 const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
   // États pour le filtre et la visibilité du filtre
   const [filter, setFilter] = useState<FilterState>(initialFilterState);
-  const [filterVisible,] = useState<boolean>(true);
+  const [filterVisible] = useState<boolean>(true);
   const [carsDataFilter, setCarsDataFilter] = useState<Car[]>([]);
   console.log(carsDataFilter);
   useEffect(() => {
@@ -191,12 +191,15 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
   return (
     <>
       <div className="filtre flex flex-col justify-center items-center w-full lg:mt-20 md:mt-40">
-        <h2 className="text-xl font-bold mb-4">Filtrer les voitures</h2>
+        <h2 className="text-xl font-bold mb-4">
+          Filtrer les voitures {/* Titre de la section de filtre */}
+        </h2>
         {filterVisible && (
           <div className="flex flex-col justify-center gap-4 lg:flex-row md:flex-row sm:flex-col ">
             <div className="mb-4">
               <label htmlFor="year" className="block font-semibold mb-1">
                 Année : {filter.year === 0 ? "" : filter.year}
+                {/* Étiquette pour l'année sélectionnée */}
               </label>
               <input
                 type="range"
@@ -216,6 +219,7 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
             <div>
               <label htmlFor="mileage" className="block font-semibold mb-1">
                 Kilométrage : {filter.mileage === 0 ? "" : filter.mileage}
+                {/* Étiquette pour le kilométrage sélectionné */}
               </label>
               <input
                 type="range"
@@ -235,6 +239,7 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
             <div className="mb-4">
               <label htmlFor="price" className="block font-semibold mb-1">
                 Prix : {filter.price === 0 ? "" : `${filter.price}€`}
+                {/* Étiquette pour le prix sélectionné */}
               </label>
               <input
                 type="range"
@@ -260,6 +265,7 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
           onClick={() => handleReset()}
         >
           <GrPowerReset />
+          {/* Bouton de réinitialisation du filtre */}
         </button>
       </div>
       <div className=" portable gap-16 grid md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 lg:mt-38">
