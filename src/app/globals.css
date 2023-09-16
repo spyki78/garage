@@ -34,6 +34,13 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+
+@media screen and (max-width: 768px) {
+   .occ{
+    margin-left:20px;
+   }
+}
+
 @media screen and (max-width: 425px) {
   .mecano {
     height: 170px;
@@ -48,7 +55,8 @@ body {
 
   .gerant {
     font-size: large;
-    margin-left: 5px;
+    margin-right: 20px;
+    
   }
   .fond {
     margin-top: 30px;
@@ -78,6 +86,7 @@ body {
   }
 }
 
+
 @media screen and (min-device-width: 320px) and (max-device-width: 425px) {
   .vt1,
   .vt2,
@@ -91,6 +100,7 @@ body {
   .occ, .acc {
     margin: 25px;
     padding: 5px;
+    margin-right: 50px;
     
   }
 
@@ -114,8 +124,20 @@ body {
   }
 
   .gerant {
-    font-size: 25px;
+    font-size: 20px;
 
+  }
+
+  .ct {
+    width: 200px;
+  }
+
+  .av {
+    width: 200px;
+  }
+
+  .dh {
+    font-size: 10px;
   }
 }
 
@@ -126,6 +148,7 @@ body {
   
 }
 
+
 @media screen and (min-device-width: 320px) and (max-device-width: 425px)  {
 
   .fond {
@@ -135,6 +158,14 @@ body {
 
   .top {
     margin-top: 80px;
+  }
+
+  .tel1 {
+    margin-top:510px;
+  }
+
+  .he {
+    width: 300px;
   }
 }
 

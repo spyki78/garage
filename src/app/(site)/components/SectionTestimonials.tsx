@@ -3,33 +3,8 @@ import LeaveReview from "./LeaveReview";
 import avis from "./../../../../public/images/avis.jpg";
 
 export const SectionTestimonials = ({reviews}:any) => {
-  // Tableau des avis
-  const array = [
-    {
-      id: 1,
-      image: avis,
-      reviews: 4,
-      name: "Julien Duquan",
-      comment:
-        "Devis conforme à ma facture garage.Un service de qualité à un prix raisonnable.",
-    },
-    {
-      id: 2,
-      image: avis,
-      reviews: 5,
-      name: "Jean Cosda",
-      comment: "Simplet et éfficace ! Très bonne expérience.",
-    },
-    {
-      id: 3,
-      image: avis,
-      reviews: 4,
-      name: "Gabriel Maliou",
-      comment: "Service et accueil au top.",
-    },
 
-    
-  ];
+
   return (
     <section>
       <div>

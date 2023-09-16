@@ -23,7 +23,7 @@ import { BiHide, BiShow } from "react-icons/bi"
       redirect: false,
     }).then((callback: any) => {
       if (callback?.error) {
-        toast.error(callback.statusText);
+        toast.error("Email ou Mot de passe incorrect !");
         console.log("Email ou Mot de passe incorrect !");
       }
 

@@ -35,7 +35,7 @@ model Annonce {
  updated_at DateTime @updatedAt
 }
 
-model review {
+model Review {
  id            Int              @id @default(autoincrement())
  name          String
  message       String
@@ -46,14 +46,15 @@ model review {
  updated_at DateTime @updatedAt
 }
 
-model contact {
+model Contact {
 id            Int              @id @default(autoincrement())
 object        String
 firstName     String
 lastName      String
 email         String
-phone         Int
+phone         String
 message       String
+isValid       Boolean @default(false)
 
 created_at DateTime @default(now())
 updated_at DateTime @updatedAt

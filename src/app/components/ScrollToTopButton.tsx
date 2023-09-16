@@ -31,7 +31,7 @@ const ScrollToTopButton = () => {
     style={{
       position: "fixed",
       bottom: "0.5rem", // Ajustez cette valeur selon vos besoins
-      right: "-10px", // Ajustez cette valeur selon vos besoins
+      right: "5px", // Ajustez cette valeur selon vos besoins
       visibility: isVisible ? "visible" : "hidden",
     }}
       className="scrollToTopButton"
@@ -39,7 +39,7 @@ const ScrollToTopButton = () => {
       onClick={scrollToTop}
     >
       <Image
-        className="pr-4"
+        className="pr-5 md:mr-20 lg:mr-5"
         src={scrollUp}
         width={50}
         height={50}

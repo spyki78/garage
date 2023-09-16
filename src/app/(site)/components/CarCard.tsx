@@ -8,6 +8,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import Image from "next/image";
 import React, { FormEvent, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 // Interface pour représenter les données de la voiture
 interface CarData {
@@ -30,6 +32,8 @@ function CarCard({
   equipments,
   photos,
 }: CarData) {
+
+  const router= useRouter()
   // Etat pour suivre l'index de l'image actuelle dans la galerie
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -86,13 +90,46 @@ function CarCard({
     setFormData({ ...formData, [name]: truncatedValue });
   };
 
-  // Gestionnaire de soumission du formulaire
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    // Ici, vous pouvez envoyer les données du formulaire au backend ou effectuer d'autres actions.
-    console.log(formData);
+ // Gestionnaire de soumission du formulaire
+ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const formD = {
+    object: formData.subject,
+    message: formData.message,
+    firstName: formData.firstName,
+    lastName: formData.lastName,
+    email: formData.email,
+    phone: formData.phone,
   };
+
+  console.log(formD);
+
+  /* Envoi des données à l'API */
+  await fetch("/api/contact", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+
+    /*pour envoi API avec ou pas error*/
+    body: JSON.stringify(formD),
+  }).then((res) => {
+    console.log(res);
+    if (!res.ok) {
+      res.json().then((errors: any) => {
+        errors.map((error: any) => {
+          /* Affichage des messages d'erreur dynamiquement */
+          console.log(error.message);
+          toast.error(error.message);
+        });
+      });
+    } else {
+      router.refresh()
+      toast.success("Votre message est crée");
+    }
+  });
+};
 
   // Tableau des sources des images pour la galerie
   const carImageSrc: string[] = [];

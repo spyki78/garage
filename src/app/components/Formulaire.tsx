@@ -1,9 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
+
 
 function Formulaire() {
+  const router=useRouter()
 
-    // Etat pour stocker les données du formulaire de contact
+  // Etat pour stocker les données du formulaire de contact
   const [formData, setFormData] = useState({
     subject: "",
     firstName: "",
@@ -24,7 +28,7 @@ function Formulaire() {
       name === "firstName" ||
       name === "lastName" ||
       name === "email" ||
-      name === "subject"||
+      name === "subject" ||
       name === "phone"
     ) {
       const maxChars = 80;
@@ -41,16 +45,49 @@ function Formulaire() {
   };
 
   // Gestionnaire de soumission du formulaire
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const formD = {
+      object: formData.subject,
+      message: formData.message,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+    };
 
-    // Ici, vous pouvez envoyer les données du formulaire au backend ou effectuer d'autres actions.
-    console.log(formData);
+    console.log(formD);
+
+    /* Envoi des données à l'API */
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      /*pour envoi API avec ou pas error*/
+      body: JSON.stringify(formD),
+    }).then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        res.json().then((errors: any) => {
+          errors.map((error: any) => {
+            /* Affichage des messages d'erreur dynamiquement */
+            console.log(error.message);
+            toast.error(error.message);
+          });
+        });
+      } else {
+        router.refresh()
+        toast.success("Votre message est crée");
+      }
+    });
   };
   return (
     <div className="w-10/12 flex justify-center">
       <form className="top" onSubmit={handleSubmit}>
-        <label  htmlFor="subject">Objet :</label>
+        <label htmlFor="subject">Objet :</label>
         <input
           type="text"
           id="subject"
@@ -112,15 +149,15 @@ function Formulaire() {
         {/* Champ Message */}
         <label htmlFor="message">Votre message :</label>
         <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              rows={4}
-              className=" mess w-full border border-gray-300 p-2 rounded mb-2"
-              placeholder=""
-              required
-            ></textarea>
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          rows={4}
+          className=" mess w-full border border-gray-300 p-2 rounded mb-2"
+          placeholder=""
+          required
+        ></textarea>
         {/* Bouton Soumettre */}
         <button
           type="submit"

@@ -8,6 +8,7 @@ export const Footer = () => {
           <Image
             className="logo 
             lg:pl-8
+            md:ml-8
             lg:mb-20
             sm:mb-28
             h-[200px] 
@@ -41,7 +42,7 @@ export const Footer = () => {
         </div>
       </section>
       <div className="flex flex-col items-center">
-        <p className="sign text-center lg:-mt-5">@spyki2023</p>
+        <p className="sign text-center lg:-mt-5">@spyki2023👽</p>
       </div>
     </footer>
   );
