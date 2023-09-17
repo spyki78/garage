@@ -60,13 +60,29 @@ export const authOptions: AuthOptions = {
           throw new Error("Invalide Credential");
         }
 
-        return user as any;
+        return { user } as any;
       },
     }),
   ],
   debug: process.env.NODE_ENV == "development",
   session: {
     strategy: "jwt",
+  },
+  callbacks: {
+    async jwt({ token, user }: { token: any; user: any }) {
+      return { ...token, ...user };
+    },
+    async session({
+      session,
+      user,
+      token,
+    }: {
+      session: any;
+      token: any;
+      user: any;
+    }) {
+      return token;
+    },
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

@@ -14,8 +14,8 @@ model User {
   id           Int              @id @default(autoincrement())
   email        String           @unique
   hashed_password     String
-  role         Role             @default(EMPLOYEE)
-  //posts        Post[]
+  isAdmin      Boolean @default(false)
+  
 
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
@@ -23,16 +23,27 @@ model User {
 
 model Annonce {
  id            Int              @id @default(autoincrement())
- title         Int
+ title         String
  price         Float
  year          DateTime
  mileage       Int
- features      String[]
- equipments    String[]
- photos        String[]
+ features      String
+ equipments    String
+ AnnoncePhotos AnnoncePhotos[]
 
  created_at DateTime @default(now())
  updated_at DateTime @updatedAt
+}
+
+model AnnoncePhotos {
+  id          Int              @id @default(autoincrement())
+  url         String
+  annonce_id  Int 
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  annonce     Annonce @relation(fields: [annonce_id], references: [id], onDelete: Cascade)
 }
 
 model Review {
@@ -59,12 +70,3 @@ isValid       Boolean @default(false)
 created_at DateTime @default(now())
 updated_at DateTime @updatedAt
 }
-
-
-enum Role {
-  EMPLOYEE
-  ADMIN
-}
-
-
-// Autres fonctions pour interagir avec la base de données

@@ -9,9 +9,9 @@ import mecano from "../../../../public/images/mecano.png";
 import Image from "next/image";
 export const SectionServices = () => {
   return (
-    <section className="mt-48">
+    <section className="mt-64">
       <div className="fond flex bg-primaryColor justify-center items-center w-full">
-        <h1 className="pub lg:text-3xl uppercase text-center mt-8 sm:text-1xl md:text-2xl">
+        <h1 className="pub lg:text-3xl uppercase text-center mt-8 sm:text-1xl md:text-2xl ml-3">
           Nos entretiens et réparations auto
         </h1>
         <Image

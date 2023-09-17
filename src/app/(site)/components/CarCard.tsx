@@ -1,4 +1,3 @@
-// components/CarCard.tsx
 "use client";
 
 // Import des icônes de flèche pour la galerie
@@ -19,7 +18,7 @@ interface CarData {
   mileage: number;
   features: string;
   equipments: string;
-  photos: string[];
+  photos: any;
 }
 
 // Composant CarCard
@@ -32,8 +31,7 @@ function CarCard({
   equipments,
   photos,
 }: CarData) {
-
-  const router= useRouter()
+  const router = useRouter();
   // Etat pour suivre l'index de l'image actuelle dans la galerie
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -90,51 +88,51 @@ function CarCard({
     setFormData({ ...formData, [name]: truncatedValue });
   };
 
- // Gestionnaire de soumission du formulaire
- const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const formD = {
-    object: formData.subject,
-    message: formData.message,
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    email: formData.email,
-    phone: formData.phone,
-  };
+  // Gestionnaire de soumission du formulaire
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formD = {
+      object: formData.subject,
+      message: formData.message,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+    };
 
-  console.log(formD);
+    console.log(formD);
 
-  /* Envoi des données à l'API */
-  await fetch("/api/contact", {
-    method: "POST",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    /* Envoi des données à l'API */
+    await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
 
-    /*pour envoi API avec ou pas error*/
-    body: JSON.stringify(formD),
-  }).then((res) => {
-    console.log(res);
-    if (!res.ok) {
-      res.json().then((errors: any) => {
-        errors.map((error: any) => {
-          /* Affichage des messages d'erreur dynamiquement */
-          console.log(error.message);
-          toast.error(error.message);
+      /*pour envoi API avec ou pas error*/
+      body: JSON.stringify(formD),
+    }).then((res) => {
+      console.log(res);
+      if (!res.ok) {
+        res.json().then((errors: any) => {
+          errors.map((error: any) => {
+            /* Affichage des messages d'erreur dynamiquement */
+            console.log(error.message);
+            toast.error(error.message);
+          });
         });
-      });
-    } else {
-      router.refresh()
-      toast.success("Votre message est crée");
-    }
-  });
-};
+      } else {
+        router.refresh();
+        toast.success("Votre message est crée");
+      }
+    });
+  };
 
   // Tableau des sources des images pour la galerie
   const carImageSrc: string[] = [];
 
-  photos.map((photo) => {
+  photos.map((photo :any) => {
     carImageSrc.push(photo);
   });
 
@@ -174,7 +172,7 @@ function CarCard({
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
-          src={photos[0]}
+          src={`/images/voitures/${photos[0].url}`}
           width={500}
           height={500}
           alt="logo account"
@@ -198,7 +196,7 @@ function CarCard({
           <div className="flex flex-col justify-center items-center">
             <Image
               className="vt2 h-[400px] w-[350px] md:w-[325px] object-contain -mt-32"
-              src={carImageSrc[currentImageIndex]}
+              src={`/images/voitures/${carImageSrc[currentImageIndex].url}`}
               width={500}
               height={500}
               alt={`Image ${currentImageIndex + 1}`}
@@ -233,7 +231,7 @@ function CarCard({
         {/* Descriptif de la voiture de la voiture  */}
         <div className="mt-4">
           <p>Prix : {price}</p>
-          <p>Année : {year}</p>
+          <p>Année :  {new Date(year).getFullYear()}</p>
           <p>Kilométrage : {mileage}</p>
         </div>
 

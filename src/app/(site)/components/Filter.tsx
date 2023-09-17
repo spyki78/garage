@@ -1,5 +1,4 @@
-"use client";
-// Importations des modules nécessaires
+"use client"
 import { useState, useEffect } from "react";
 import CarCard from "./CarCard";
 import { GrPowerReset } from "react-icons/gr";
@@ -8,6 +7,7 @@ import { GrPowerReset } from "react-icons/gr";
 interface FilterProps {
   onFilterChange: (filter: FilterState) => void;
   carsData: Car[];
+  cars: any;
 }
 
 // Définition de l'interface FilterState
@@ -72,7 +72,7 @@ const carsData: Car[] = [
   {
     id: 3,
     name: "Scenic 3",
-    year: 2011,
+    year: 2019,
     mileage: 90000,
     price: 8000,
     features:
@@ -118,7 +118,7 @@ const initialFilterState: FilterState = {
 };
 
 // Composant FilterComponent
-const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
+const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
   // États pour le filtre et la visibilité du filtre
   const [filter, setFilter] = useState<FilterState>(initialFilterState);
   const [filterVisible] = useState<boolean>(true);
@@ -205,14 +205,14 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
                 type="range"
                 id="year"
                 className="w-full custom-input-range"
-                min={2000}
+                min={1960}
                 max={2020}
                 step={1}
                 value={filter.year}
                 onChange={handleYearChange}
               />
               <div className="flex justify-between">
-                <span>2000</span>
+                <span>1960</span>
                 <span>2020</span>
               </div>
             </div>
@@ -286,7 +286,7 @@ const FilterComponent = ({ onFilterChange, carsData }: FilterProps) => {
   );
 };
 
-const Home: React.FC = () => {
+const Home: React.FC = ({cars}: any) => {
   const [filteredCars, setFilteredCars] = useState<Car[]>(carsData);
 
   const handleFilterChange = (filter: FilterState) => {
@@ -314,6 +314,7 @@ const Home: React.FC = () => {
       <FilterComponent
         onFilterChange={handleFilterChange}
         carsData={carsData}
+        cars={cars}
       />
     </div>
   );

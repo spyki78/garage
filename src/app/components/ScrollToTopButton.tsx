@@ -39,7 +39,7 @@ const ScrollToTopButton = () => {
       onClick={scrollToTop}
     >
       <Image
-        className="pr-5 md:mr-20 lg:mr-5"
+        className="pr-5 "
         src={scrollUp}
         width={50}
         height={50}

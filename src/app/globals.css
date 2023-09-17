@@ -3,18 +3,15 @@
 @tailwind utilities;
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 
-
-
 /* styles/globals.css */
 .custom-input-range::-webkit-slider-runnable-track {
-  background-color:rgb(243, 244, 247); /* Changer la couleur de la barre ici */
+  background-color: rgb(243, 244, 247); /* Changer la couleur de la barre ici */
   border-radius: 10px;
 }
 
 img {
   max-width: none !important;
 }
-
 
 h1 {
   color: white;
@@ -24,21 +21,13 @@ h1 {
   color: white;
 }
 
-.occ, .acc {
-
-  color:black;
-
+.occ,
+.acc {
+  color: black;
 }
 
 body {
   font-family: "Inter", sans-serif;
-}
-
-
-@media screen and (max-width: 768px) {
-   .occ{
-    margin-left:20px;
-   }
 }
 
 @media screen and (max-width: 425px) {
@@ -55,8 +44,7 @@ body {
 
   .gerant {
     font-size: large;
-    margin-right: 20px;
-    
+
   }
   .fond {
     margin-top: 30px;
@@ -78,14 +66,22 @@ body {
   }
 }
 
-@media screen and (min-device-width: 320px) and (max-device-width: 475px) {
+
+@media screen and (min-device-width: 768px) and (max-device-width: 478px) {
+
+.logo{
+  margin-left: 50px !important;
+}
+
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 425px) {
   .ecran {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 }
-
 
 @media screen and (min-device-width: 320px) and (max-device-width: 425px) {
   .vt1,
@@ -97,15 +93,18 @@ body {
     margin-top: 10px;
   }
 
-  .occ, .acc {
-    margin: 25px;
+  .occ,
+  .acc,
+  .ucc {
+
+    margin: 20px;
     padding: 5px;
-    margin-right: 50px;
+    margin-left: 20px;
     
+   
   }
 
   .top {
-
     margin-top: 50px;
   }
 
@@ -115,17 +114,16 @@ body {
   }
 
   .filtre {
-
     margin-top: -100px;
   }
 
   .sign {
-    margin-top:40px;
+    margin-top: 40px;
   }
 
   .gerant {
     font-size: 20px;
-
+  
   }
 
   .ct {
@@ -139,20 +137,17 @@ body {
   .dh {
     font-size: 10px;
   }
+
 }
 
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
   .pub {
     margin-left: 10px;
   }
-  
 }
 
-
-@media screen and (min-device-width: 320px) and (max-device-width: 425px)  {
-
+@media screen and (min-device-width: 320px) and (max-device-width: 425px) {
   .fond {
-
     margin-top: -120px;
   }
 
@@ -161,7 +156,7 @@ body {
   }
 
   .tel1 {
-    margin-top:510px;
+    margin-top: 510px;
   }
 
   .he {
@@ -169,15 +164,7 @@ body {
   }
 }
 
-@media screen and (min-device-width: 1024px) and (max-device-width: 1024px) {
 
-.portable{
-  display:flex;
-  flex-flow: row wrap;
-
-}
-
-}
 
 .gerant {
   box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.5);
@@ -185,6 +172,7 @@ body {
   padding: 10px;
   background-color: #29bb9c;
   color: white;
+  margin: 80px;
 }
 
 .foot {
