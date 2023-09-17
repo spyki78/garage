@@ -321,3 +321,6 @@ const Home: React.FC = ({cars}: any) => {
 };
 
 export default Home;
+
+
+<div></div>
