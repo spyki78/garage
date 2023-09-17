@@ -9,10 +9,8 @@ async function page() {
   if (session === null) {
     redirect("/connexion");
   }
-
-  console.log(session.user.isAdmin);
  
-  const { isAdmin  } = session.user;
+  const { isAdmin  } : any = session.user;
   if (!isAdmin) {
     redirect("/connexion");
   }
