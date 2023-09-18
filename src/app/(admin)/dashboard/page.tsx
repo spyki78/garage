@@ -14,7 +14,7 @@ export default async function Page() {
     redirect("/connexion");
   }
 
-  const { isAdmin } = session.user;
+
   const reviews = await prisma.review.findMany();
   const contacts = await prisma.contact.findMany();
 
