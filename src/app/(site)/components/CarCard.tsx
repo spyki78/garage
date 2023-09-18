@@ -129,8 +129,13 @@ function CarCard({
     });
   };
 
-  // Tableau des sources des images pour la galerie
-  const carImageSrc: string[] = [];
+  interface CarImage {
+    url: string;
+  }
+  
+  // Utilisez l'interface pour annoter le type de carImageSrc
+  const carImageSrc: CarImage[] = [];
+  
 
   photos.map((photo :any) => {
     carImageSrc.push(photo);
@@ -172,7 +177,7 @@ function CarCard({
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
-          src={`/images/voitures/${photos[0].url}`}
+          src={`/images/voitures/${photos[0]}`}
           width={500}
           height={500}
           alt="logo account"
