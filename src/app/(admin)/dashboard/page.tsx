@@ -23,7 +23,7 @@ export default async function Page() {
       <p className=" dh text-center text-3xl lg:mt-72 md:mt-72">
         Bienvenue {session?.user?.email} dans votre dashboard
       </p>
-      {isAdmin && (
+      { (
         <div className="flex justify-center items-center mt-40">
           <Link href="/dashboard/employe">Ajouter un employé</Link>
         </div>
