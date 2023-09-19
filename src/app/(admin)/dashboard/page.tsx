@@ -24,8 +24,8 @@ export default async function Page() {
         Bienvenue {session?.user?.email} dans votre dashboard
       </p>
       { (
-        <div className="cursor-pointer lg:text- text-center justify-center lg:text-xl md:text-lg rounded-3xl lg:w-[100px]mt-20 pl-8 pr-8 pt-3 pb-3 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 border-lg mt-48">
-          <Link href="/dashboard/employe">Ajouter un employé</Link>
+        <div className="cursor-pointer lg:text-center justify-center lg:w-full mt-24 ">
+          <Link className="lg:text-xl md:text-lg rounded-3xl  pl-8 pr-8 pt-3 pb-3 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 border-lg" href="/dashboard/employe">Ajouter un employé</Link>
         </div>
       )}
       <div className="flex flex-col">
