@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 export const Contact = ({ id, object, firstName, lastName, email, phone,message, isValid }: any) => {
   const router = useRouter();
   const handleValid = async () => {
-    await fetch(`/api/review/${id}`, {
+    await fetch(`/api/contact/${id}`, {
       method: "PUT",
       headers: {
         Accept: "application/json",
@@ -27,7 +27,7 @@ export const Contact = ({ id, object, firstName, lastName, email, phone,message,
   };
 
   const handleDelete = async () => {
-    await fetch(`/api/review/${id}`, {
+    await fetch(`/api/contact/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",

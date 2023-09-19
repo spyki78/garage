@@ -103,7 +103,7 @@ function CarCard({
     console.log(formD);
 
     /* Envoi des données à l'API */
-    await fetch("/api/contact", {
+    await fetch("/api/car", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -124,7 +124,7 @@ function CarCard({
         });
       } else {
         router.refresh();
-        toast.success("Votre message est crée");
+        toast.success("Votre voiture est crée");
       }
     });
   };
@@ -177,7 +177,7 @@ function CarCard({
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
-          src={`/images/voitures/${photos[0]}`}
+          src={`/images/voitures/${photos[0].url}`}
           width={500}
           height={500}
           alt="logo account"
@@ -236,7 +236,7 @@ function CarCard({
         {/* Descriptif de la voiture de la voiture  */}
         <div className="mt-4">
           <p>Prix : {price}</p>
-          <p>Année :  {new Date(year).getFullYear()}</p>
+          <p>Année :  {year}</p>
           <p>Kilométrage : {mileage}</p>
         </div>
 

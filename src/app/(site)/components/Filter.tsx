@@ -3,128 +3,18 @@ import { useState, useEffect } from "react";
 import CarCard from "./CarCard";
 import { GrPowerReset } from "react-icons/gr";
 
-// Définition de l'interface FilterProps
-interface FilterProps {
-  onFilterChange: (filter: FilterState) => void;
-  carsData: Car[];
-  cars: any;
-}
 
-// Définition de l'interface FilterState
-interface FilterState {
-  year: number;
-  mileage: number;
-  price: number;
-  equipments: any;
-  features: any;
-}
-
-// Définition de l'interface Car
-interface Car {
-  id: number;
-  name: string;
-  year: number;
-  mileage: number;
-  price: number;
-  features: string;
-  equipments: string;
-  photos: string[];
-}
-
-// Données des voitures
-const carsData: Car[] = [
-  // Ajoutez plus de données de voitures si nécessaire
-  {
-    id: 1,
-    name: "Peugeot 3008",
-    year: 2018,
-    mileage: 25000,
-    price: 25000,
-    features:
-      "ESSENCE PLUG-IN HYBRID HYBRID4 300 e-EAT8 Cylindrée 1258 cm3 Bleu Célèbes",
-    equipments:
-      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
-    photos: [
-      "/images/voitures/peugeot/peugeot.png",
-      "/images/voitures/peugeot/peugeot2.png",
-      "/images/voitures/peugeot/peugeot3.png",
-      "/images/voitures/peugeot/peugeot4.png",
-    ],
-  },
-  {
-    id: 2,
-    name: "Duster",
-    year: 2015,
-    mileage: 30000,
-    price: 18000,
-    features:
-      "ESSENCE ECO-G 100 4x2 Cylindrée 999 cm3 Puissance maxi kw Ch74 100 Orange sable",
-    equipments:
-      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
-    photos: [
-      "/images/voitures/duster/duster.png",
-      "/images/voitures/duster/duster2.png",
-      "/images/voitures/duster/duster3.png",
-      "/images/voitures/duster/duster4.png",
-    ],
-  },
-
-  {
-    id: 3,
-    name: "Scenic 3",
-    year: 2019,
-    mileage: 90000,
-    price: 8000,
-    features:
-      "	DIESEL 4 cylindres en ligne 8 soupapes Cylindrée 1461 cm3 Gris Platine métallisé",
-    equipments:
-      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
-    photos: [
-      "/images/voitures/scenic3/scenic.png",
-      "/images/voitures/scenic3/scenic2.png",
-      "/images/voitures/scenic3/scenic3.png",
-      "/images/voitures/scenic3/scenic4.png",
-    ],
-  },
-
-  {
-    id: 4,
-    name: "Citroen C4",
-    year: 2015,
-    mileage: 30000,
-    price: 18000,
-    features:
-      "ESSENCE II (2) 1.2 PURETECH 110 FEEL Cylindrée 1199 cm3 Rouge Aden",
-    equipments:
-      "Régulateur / Limiteur de vitesse Radars de recul Caméra Multi-vues Avertisseur d'angles morts Ordinateur de bord Indicateur de changement de vitesse Fonction éco-mode Projecteurs antibrouillardRétroviseurs ext. électriques, dégivrants et rabattable électriquement",
-    photos: [
-      "/images/voitures/citroenc4/citroen.png",
-      "/images/voitures/citroenc4/citroen2.png",
-      "/images/voitures/citroenc4/citroen3.png",
-      "/images/voitures/citroenc4/citroen4.png",
-    ],
-  },
-
-  // Ajoutez d'autres voitures ici si nécessaire
-];
-
-// État initial du filtre
-const initialFilterState: FilterState = {
-  year: 0,
-  mileage: 0,
-  price: 0,
-  equipments: 0,
-  features: 0,
-};
 
 // Composant FilterComponent
-const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
+
+  export const FilterComponent = ({ onFilterChange, carsData, initialFilterState }: any) => {
   // États pour le filtre et la visibilité du filtre
-  const [filter, setFilter] = useState<FilterState>(initialFilterState);
-  const [filterVisible] = useState<boolean>(true);
-  const [carsDataFilter, setCarsDataFilter] = useState<Car[]>([]);
+  const [filter, setFilter] = useState(initialFilterState);
+  const [filterVisible] = useState(true);
+  const [carsDataFilter, setCarsDataFilter] = useState<any>([]);
   console.log(carsDataFilter);
   useEffect(() => {
+
     // Première initialisation des voitures filtrées
     setCarsDataFilter([...carsData]);
   }, [carsData]);
@@ -133,7 +23,6 @@ const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
   const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedYear = Number(event.target.value);
     setFilter({ ...filter, year: selectedYear });
-    setCarsDataFilter(carsData.filter((car) => car.year == selectedYear));
   };
 
   // Gestionnaire de changement du kilométrage
@@ -167,7 +56,7 @@ const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
 
   // Effet de mise à jour des voitures filtrées lors du changement du filtre
   useEffect(() => {
-    const filtered = carsData.filter((car) => {
+    const filtered = carsData.filter((car : any)  => {
       const yearMatch = filter.year === 0 || car.year === filter.year;
       const mileageMatch =
         filter.mileage === 0 ||
@@ -269,7 +158,7 @@ const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
         </button>
       </div>
       <div className=" portable gap-16 grid md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1 lg:mt-38">
-        {carsDataFilter.map((car, key) => (
+        {carsDataFilter.map((car :any, key : any) => (
           <CarCard
             key={key}
             title={car.name}
@@ -278,7 +167,8 @@ const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
             mileage={car.mileage}
             features={car.features}
             equipments={car.equipments}
-            photos={car.photos}
+            photos={car.AnnoncePhotos}
+      
           />
         ))}
       </div>
@@ -286,41 +176,4 @@ const FilterComponent = ({ onFilterChange, carsData, cars }: FilterProps) => {
   );
 };
 
-const Home: React.FC = ({cars}: any) => {
-  const [filteredCars, setFilteredCars] = useState<Car[]>(carsData);
 
-  const handleFilterChange = (filter: FilterState) => {
-    // Mise à jour des voitures filtrées avec le nouveau filtre
-    const filtered = carsData.filter((car) => {
-      const yearMatch = filter.year === 0 || car.year === filter.year;
-      const mileageMatch =
-        filter.mileage === 0 ||
-        (car.mileage >= filter.mileage && car.mileage <= filter.mileage + 1000);
-      const priceMatch =
-        filter.price === 0 ||
-        (car.price >= filter.price && car.price <= filter.price + 1000);
-
-      return yearMatch && mileageMatch && priceMatch;
-    });
-
-    setFilteredCars(filtered);
-  };
-
-  useEffect(() => {
-    handleFilterChange(initialFilterState);
-  }, []);
-  return (
-    <div className=" my-auto mx-auto mt-44">
-      <FilterComponent
-        onFilterChange={handleFilterChange}
-        carsData={carsData}
-        cars={cars}
-      />
-    </div>
-  );
-};
-
-export default Home;
-
-
-<div></div>
