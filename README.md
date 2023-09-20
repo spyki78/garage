@@ -99,7 +99,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     Ouvrez votre terminal ou votre invite de commande.
     Naviguez jusqu'au répertoire de votre projet Next.js en utilisant la commande cd.
 
-    Une fois dans le répertoire du projet, utilisez la commande suivante pour installer les dépendances du projet à l'aide de npm (Node Package Manager) :
+    Une fois dans le répertoire du projet, utilisez la commande suivante pour installer les dépendances du projet à l'aide de pnpm (Node Package Manager) :
 
     pnpm install
 
@@ -228,60 +228,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     - Les données des véhicules et des utilisateurs sont stockées dans une base de données PostgreSQL, gérée avec Neon pour une gestion efficace.
 
 
-
-
-
-
-
-
-
-
-   
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-    
-
-
-
-
-
-
-3. **Installer les dépendances :**
-   
-   Utilisez pnpm (Node Package Manager) pour installer toutes les dépendances nécessaires au projet. Exécutez cette commande à l'intérieur du répertoire du projet :
-   pnpm instal
-
-   Cette commande installera toutes les bibliothèques et les modules dont le projet a besoin pour fonctionner correctement.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+1. **Supplémentaire:**
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
