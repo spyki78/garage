@@ -1,5 +1,4 @@
 import { Review } from "./review";
-
 export const Reviews = ({ reviews }: any) => {
   return (
     <div className="flex-row items-center justify-between min-h-screen">
