@@ -229,7 +229,7 @@ function CarCard({
       {/* Section des informations sur la voiture */}
       <section className="border-2 border-secondaryColor rounded-xl p-5">
         {/* Titre de l'annonce */}
-        <h2 className="text-xl font-bold flex justify-center items-center shadow-lg p-2 rounded-lg">
+        <h2 className="text-xl font-bold flex justify-center items-center shadow-lg p-2 rounded-lg pt-5 pb-10">
           {title}
         </h2>
 
