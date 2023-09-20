@@ -142,17 +142,21 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
 
     vous remarquerez qu'en tant qu'un employé vous ne pouvez pas créer de compte.
     
-    17. **Dashboard utlisation:**
+17. **Dashboard utlisation:**
 
     - de supprimer ou valider les avis
     - de supprimer les messages formumlaire de contact
     - de supprimer les annonces voitures
 
-    16. **Création annonces voitures:**
+18. **Création annonces voitures:**
 
     se rendre sur http://localhost:3000/dashboard/voiture
 
     afin de pouvoir créer une voiture.
+    
+19. **posibilité de supprimer les comptes et annonce ou formulaire via prisma studio:**
+    excuter la commmande suivante dans votre terminal
+    pnpm prisma studio
 
 
 ## Utilisation 
@@ -167,44 +171,59 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     - Là, vous trouverez des informations détaillées sur le véhicule, y compris les spécifications techniques, les photos et les équipements et Options.
     - Cliquez sur formulaire de contact afin d'avoir un espace de contact dédié au véhicule.
 
+3. **Demande d'Informations Supplémentaires :**
+    - Si vous avez des questions ou souhaitez obtenir plus d'informations sur un véhicule particulier, utilisez le formulaire de contact disponible sur la page de les occasions propre à l'annonce du véhicule.
+    - Remplissez les champs obligatoires et envoyez votre demande. Un vendeur vous répondra dans les plus brefs délais.
+    - ou pour tout autres questions via le formulaire général de contact ou par téléphone / adresse postal.
+
+4. **visibilité prestations :**
+    - Si vous souhaitez connaitre les prestations du garage sur les vehicules rendez-vous directement sur la page d'accueil.
+
+5. **Déposer un avis :**
+     - Si vous souhaitez déposer un avis rendez-vous directement sur la page d'accueil.
 
 
 ## Fonctionnalités
 
-1. **Recherche de Voitures d'Occasion :**
+1. **Visibilité sur les prestations du garage:**
+ 
+ - Les utilisateurs peuvent voir la liste des prestations possible sur véhicule via la page d'accueil du garage.
+
+
+2. **Recherche de Voitures d'Occasion :**
 
    - Les utilisateurs peuvent rechercher des voitures d'occasion en fonction de différents critères tels que  l'année , le kilométrage et le prix.
 
-2. **Consultation des Détails des Véhicules :**
+3. **Consultation des Détails des Véhicules :**
 
    - Les utilisateurs peuvent afficher les détails complets de chaque véhicule, y compris les spécifications techniques et les photos.
 
-3. **Demande d'Informations Supplémentaires :**
+4. **Demande d'Informations Supplémentaires :**
 
    - Les utilisateurs peuvent poser des questions ou demander des informations supplémentaires sur un véhicule particulier en utilisant un formulaire de contact intégré.
 
-4. **Deposition d'un avis :**
+5. **Deposition d'un avis :**
 
  - Les utilisateurs peuvent déposer un avis en indiquant leur nom, le message et le scoring en utilisant un formulaire d'avis dédié.
 
-5. **Consultation horaires d'ouverture et contact :**
+6. **Consultation horaires d'ouverture et contact :**
 
  - Les utilisateurs peuvent consuler les horaires d'ouvertures , téléphone et adresse via le bas de page du site.
 
-6. **Création de Compte Utilisateur :**
+7. **Création de Compte Utilisateur :**
 
    - L'administrateur peut créer un compte employé, une annonce , un avis
    - l'employé ne peut uniquement que une annonce , un avis.
 
-7. **Intégration avec GitHub :**
+8. **Intégration avec GitHub :**
 
    - Le projet est hébergé sur GitHub, ce qui permet une collaboration aisée et un suivi des versions du code source.
 
-8. **Hébergement sur Vercel :**
+9. **Hébergement sur Vercel :**
 
    - L'application est déployée sur la plateforme d'hébergement Vercel, garantissant une disponibilité continue et des performances optimales.
 
-9. **Base de Données PostgreSQL avec Neon :**
+10. **Base de Données PostgreSQL avec Neon :**
 
     - Les données des véhicules et des utilisateurs sont stockées dans une base de données PostgreSQL, gérée avec Neon pour une gestion efficace.
 
