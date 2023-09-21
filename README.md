@@ -110,6 +110,248 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     Ouvrez votre navigateur web et accédez à l'application en entrant l'URL suivante dans la barre d'adresse :
     http://localhost:3000
 
+13. **Création du compte administrateur:**   
+    Créez un modèle Prisma pour les administrateurs :
+    Si vous n'en avez pas déjà un, créez un modèle Prisma pour représenter les administrateurs dans votre base de données. dans le terminal au préalable installer prisma :
+    
+    npm install -g prisma
+
+    Cette commande téléchargera et installera Prisma sur votre système.
+    Vérifiez l'installation
+
+    prisma -v
+
+ ensuite dans le dossier prisma puis fichier shema.prisma
+ 
+ mettre  :
+    generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int              @id @default(autoincrement())
+  email        String           @unique
+  hashed_password     String
+  isAdmin      Boolean @default(false)
+  
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+puis dans le dossier API
+
+créer le dossier auth puis dans auth le dossier [...nextauth]
+ajouter un fichier au dossier 
+route.ts
+
+dans ce meme fichier mettre : 
+
+
+// Import des modules et packages nécessaires
+
+import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import { prisma } from "@/../libs/prismadb";
+import NextAuth, { AuthOptions } from "next-auth";
+import { z } from "zod";
+import bcrypt from "bcrypt";
+
+// Définition du schéma de validation des données utilisateur avec Zod
+const UserBodyScheme = z.object({
+  email: z
+    .string({
+      required_error: "Le champs email est requis !", // Message d'erreur si le champ est vide
+      invalid_type_error: "Le champs email est requis !",// Message d'erreur si le champ est au mauvais format
+    })
+    .email("Le champs email n'est pas valide !")// Validation du format de l'email
+    .trim(),// Suppression des espaces blancs autour de l'email
+  password: z
+    .string({
+      required_error: "Le champs mot de passe est requis !", // Message d'erreur si le champ est vide
+      invalid_type_error: "Le champs mot de passe est requis !",// Message d'erreur si le champ est au mauvais format
+    })
+    .trim(), // Suppression des espaces blancs autour du mot de passe
+});
+
+// Définition du type User
+type User = {
+  id: number;
+  name: string;
+  email: string;
+  // ...
+};
+
+// Configuration de NextAuth.js
+export const authOptions: AuthOptions = {
+  adapter: PrismaAdapter(prisma) as any,// Utilisation de Prisma comme adaptateur
+  providers: [
+    // utilisation d'un non provider / general avec mail et mot de passe
+    CredentialsProvider({
+      // Utilisation d'un fournisseur d'authentification "credentials" (email/mot de passe)
+      name: "credentials",
+      credentials: {
+        email: { label: "email", type: "email" }, // Configuration du champ email
+        password: { label: "password", type: "password" }, // Configuration du champ mot de passe
+      },
+ // Fonction d'autorisation pour valider les informations d'identification
+      async authorize(credentials: any) {
+        const userBody = UserBodyScheme.parse(credentials);// Validation des données utilisateur avec Zod
+        const user = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
+
+        if (!user || !user?.hashed_password) {
+          throw new Error("Invalide Credential"); // Erreur si les informations d'identification sont invalides
+        }
+
+        const isCorrectPassword = await bcrypt.compare(
+          credentials.password,
+          user.hashed_password
+        );
+
+        if (!isCorrectPassword) {
+          throw new Error("Invalide Credential"); // Erreur si le mot de passe est incorrect
+        }
+
+        return { user } as any; // Renvoie l'utilisateur en cas de succès
+      },
+    }),
+  ],
+  debug: process.env.NODE_ENV == "development", // Activation du mode débogage en développement
+  session: {
+    strategy: "jwt", // Utilisation de JSON Web Tokens pour gérer les sessions
+  },
+  callbacks: {
+    async jwt({ token, user }: { token: any; user: any }) {
+      return { ...token, ...user };
+    },
+    async session({
+      session,
+      user,
+      token,
+    }: {
+      session: any;
+      token: any;
+      user: any;
+    }) {
+      return token;
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET, // Clé secrète pour la sécurité
+};
+
+// Création du gestionnaire d'authentification NextAuth
+const handler = NextAuth(authOptions);
+export { handler as GET, handler as POST, UserBodyScheme };
+
+Imports :
+Les premières lignes importent les modules et packages nécessaires à la configuration de l'authentification. Cela inclut NextAuth.js pour gérer l'authentification, le package PrismaAdapter pour utiliser Prisma comme adaptateur d'authentification, ainsi que d'autres dépendances comme Zod (un outil de validation de schéma) et bcrypt (pour le hachage et la comparaison des mots de passe).
+
+Schéma de validation de l'utilisateur :
+La partie suivante définit un schéma de validation des données utilisateur à l'aide de Zod. Il spécifie les règles de validation pour les champs email et mot de passe.
+
+Type User :
+Le type User est défini pour représenter les données d'un utilisateur, telles que l'ID, le nom, l'email, etc. Cela peut être utilisé pour typage statique.
+
+authOptions :
+Cette variable contient la configuration pour NextAuth.js. Elle spécifie l'adaptateur Prisma, les fournisseurs d'authentification (dans ce cas, il s'agit d'un fournisseur de "credentials" qui permet l'authentification par email et mot de passe), les options de débogage, la stratégie de session (dans ce cas, "jwt" pour JSON Web Tokens), et des callbacks pour personnaliser le comportement de NextAuth.js.
+
+Le callback authorize est utilisé pour valider les informations d'identification (email et mot de passe) soumises par l'utilisateur. Il vérifie si les informations sont valides en comparant le mot de passe haché stocké en base de données avec le mot de passe soumis après hachage.
+
+Les callbacks jwt et session sont utilisés pour gérer la création et la mise à jour du jeton JWT (JSON Web Token) utilisé pour l'authentification.
+
+La clé secrète NEXTAUTH_SECRET est généralement stockée dans les variables d'environnement pour des raisons de sécurité.
+
+handler :
+Enfin, le code exporte un gestionnaire d'authentification en utilisant NextAuth.js avec les options de configuration précédemment définies. Il exporte également UserBodyScheme qui peut être utilisé pour valider les données d'identification.
+
+Ce fichier de configuration définit la logique d'authentification de votre application Next.js en utilisant NextAuth.js et Prisma comme adaptateur. Il permet aux utilisateurs de s'authentifier en fournissant leur email et leur mot de passe, puis il vérifie ces informations par rapport à la base de données. Si les informations sont valides, l'utilisateur est authentifié et un jeton JWT est généré pour gérer les sessions utilisateur.
+
+puis créer un dossier user dans api et dans ce dossier un fichier route.ts
+
+import { NextResponse } from "next/server";
+import { z } from "zod";
+import bcrypt from "bcrypt";
+import { prisma } from "@/../libs/prismadb";
+
+/* pour configurer un shéma de user souhaitez pour la validation du formulaire*/
+const UserBodyScheme = z.object({
+  email: z
+    .string({
+      required_error: "Le champs email est requis !",
+      invalid_type_error: "Le champs email est requis !",
+    })
+    .email("Le champs email n'est pas valide !")
+    /* supprime les espaces auto*/
+    .trim(),
+  password: z
+    .string({
+      required_error: "Le champs mot de passe est requis !",
+      invalid_type_error: "Le champs mot de passe est requis !",
+    })
+    .min(8, { message: "Must be 8 or more characters long" })
+    .max(20, { message: "Mot de passe 20 carac" })
+    .regex(/[A-Z]/, {
+      message: "Le champ mot de passe doit contenir au moins une majuscule !",
+    })
+    .regex(/[0-9]/, {
+      message: "Le champ mot de passe doit contenir au moins un chiffre !",
+    })
+    .regex(/[@#$%^&+=!:/?~]/, {
+      message:
+        "Le champ mot de passe doit contenir au moins un caractère spécial !",
+    })
+    .trim(),
+});
+
+
+
+export async function POST(request: Request) {
+  try {
+    /*recupere les données du body*/
+    const body = await request.json();
+    /*Body doit etre identique aux configurations sinon retour error*/
+    const userBody = UserBodyScheme.parse(body);
+    /*securisation du mot de passe*/
+    const hashed_password = await bcrypt.hash(userBody.password, 12);
+    const user = await prisma.user.create({
+      data: {
+        email: userBody.email,
+        hashed_password: hashed_password,
+      },
+    });
+
+    return NextResponse.json(user, { status: 201 });
+  } catch (error: any) {
+    console.log(error);
+    return new NextResponse(error, { status: 500 });
+  }
+}
+
+
+    Ce code semble gérer l'inscription d'un nouvel utilisateur dans une base de données en utilisant des données soumises via une requête HTTP POST. Il effectue des vérifications de sécurité telles que la validation des données utilisateur et le hachage du mot de passe avant de l'enregistrer dans la base de données.
+
+    Côté client (Front-end) :
+
+    Dans les composants React : Vous pouvez conditionner l'affichage de certaines fonctionnalités ou éléments d'interface utilisateur en fonction du rôle ou des autorisations de l'administrateur.
+
+    voir le fichier situé dans (admin)\dashboard\employe\page.tsx
+
+    La première étape consiste à obtenir la session utilisateur côté serveur en utilisant getServerSession et la configuration d'authentification authOptions.
+
+    Ensuite, il y a une vérification pour s'assurer que l'utilisateur est connecté. Si la session est nulle (c'est-à-dire que l'utilisateur n'est pas connecté), la fonction effectue une redirection vers la page "/connexion". Cela signifie que si l'utilisateur n'est pas connecté, il est redirigé vers une page de connexion.
+
+    Après la vérification de la connexion, la fonction semble vérifier si l'utilisateur a le statut d'administrateur. La variable isAdmin est extraite de la session utilisateur 
+    (session.user) et est vérifiée. Si l'utilisateur n'est pas un administrateur (!isAdmin), une autre redirection vers la page de connexion est effectuée. Cela signifie que même si l'utilisateur est connecté, il doit également être un administrateur pour accéder à la page.
+
 
 13. **Accédez à votre application coté back end Admin:**
 
@@ -119,7 +361,6 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     adresse e mail : paul@gmail.com
     mot de passe  : Jeudi78!
 
-15. **Accédez à votre application coté back end Employe:** 
 
 
 16. **Création nouvel employé:**
@@ -132,7 +373,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
 
     rentrer l'adresse mail et mot de passe de l'employé à créer.
     
-    si souhaitez actif : 
+    ## si souhaitez employé déjà actif ## : 
     adresse e mail : didier@gmail.com
     mot de passe  : Vendredi78!
 
@@ -150,20 +391,20 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
 
 18. **Création annonces voitures:**
 
-    se rendre sur http://localhost:3000/dashboard/voiture
+     se rendre sur http://localhost:3000/dashboard/voiture
 
-    afin de pouvoir créer une voiture.
+     afin de pouvoir créer une voiture.
     
 19. **posibilité de supprimer les comptes et annonce ou formulaire via prisma studio:**
-    excuter la commmande suivante dans votre terminal
-    pnpm prisma studio
+     excuter la commmande suivante dans votre terminal
+     pnpm prisma studio
 
 
 ## Utilisation 
 
 1. **Recherche de Voitures d'Occasion :**
     - Accédez à la page les occasions de l'application.
-    - Utilisez le filtre de recherche pour spécifier les critères de recherche tels que le prix, l'année et le kilométrage.
+    - Utilisez le filtre de recherche pour spécifier les critères de recherche tels que le prix, l'année  et le kilométrage.
     
 2. **Consultation des Détails des Véhicules :**
     - Parcourez la liste des voitures affichées.
@@ -187,7 +428,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
 
 1. **Visibilité sur les prestations du garage:**
  
- - Les utilisateurs peuvent voir la liste des prestations possible sur véhicule via la page d'accueil du garage.
+    - Les utilisateurs peuvent voir la liste des prestations possible sur véhicule via la page d'accueil du garage.
 
 
 2. **Recherche de Voitures d'Occasion :**
@@ -204,11 +445,11 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
 
 5. **Deposition d'un avis :**
 
- - Les utilisateurs peuvent déposer un avis en indiquant leur nom, le message et le scoring en utilisant un formulaire d'avis dédié.
+    - Les utilisateurs peuvent déposer un avis en indiquant leur nom, le message et le scoring en utilisant un formulaire d'avis dédié.
 
 6. **Consultation horaires d'ouverture et contact :**
 
- - Les utilisateurs peuvent consuler les horaires d'ouvertures , téléphone et adresse via le bas de page du site.
+    - Les utilisateurs peuvent consuler les horaires d'ouvertures , téléphone et adresse via le bas de page du site.
 
 7. **Création de Compte Utilisateur :**
 
