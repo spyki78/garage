@@ -33,14 +33,7 @@ const UserBodyScheme = z.object({
     .trim(),
 });
 
-/*
-export async function GET() {
-  try {
-  } catch (error: any) {
-    console.log(error);
-    return new NextResponse(error, { status: 500 });
-  }
-}*/
+
 
 export async function POST(request: Request) {
   try {
