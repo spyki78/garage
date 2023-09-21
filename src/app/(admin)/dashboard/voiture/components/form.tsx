@@ -63,6 +63,7 @@ export const Form = () => {
         className="flex flex-col justify-center items-center"
         method="post"
       >
+        <p>Titre</p>
         <input
           onChange={(e) => setTitle(e.target.value)}
           type="text"
@@ -72,6 +73,7 @@ export const Form = () => {
           border border-secondaryColor my-5 rounded-xl
           "
         />
+        <p>Prix</p>
         <input
           onChange={(e) => setPrice(e.target.value)}
           type="number"
@@ -81,6 +83,7 @@ export const Form = () => {
           border border-secondaryColor my-5 rounded-xl
           "
         />
+        <p>Année</p>
         <input
           onChange={(e) => setYear(e.target.value)}
           type="date"
@@ -90,6 +93,7 @@ export const Form = () => {
           border border-secondaryColor my-5 px-8 rounded-xl
           "
         />
+         <p>kilométrage</p>
         <input
           onChange={(e) => setMileage(e.target.value)}
           type="text"
@@ -99,6 +103,7 @@ export const Form = () => {
           border border-secondaryColor my-5 rounded-xl
           "
         />
+        <p>Caractéristiques</p>
         <input
           onChange={(e) => setFeatures(e.target.value)}
           type="text"
@@ -108,6 +113,7 @@ export const Form = () => {
           border border-secondaryColor my-5 rounded-xl
           "
         />
+        <p>Equipements & Options</p>
         <input
           onChange={(e) => setEquipments(e.target.value)}
           type="text"
