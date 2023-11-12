@@ -36,7 +36,7 @@ export const Annonce = ({
   };
 
   const handleDelete = async () => {
-    await fetch(`/api/annonce/${id}`, {
+    await fetch(`/api/car/${id}`, {
       method: "DELETE",
       headers: {
         Accept: "application/json",
