@@ -30,7 +30,7 @@ type User = {
   id: number;
   name: string;
   email: string;
-  // ...
+  // ..
 };
 
 // Configuration de NextAuth.js
