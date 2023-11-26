@@ -278,7 +278,7 @@ function CarCard({
               value={formData.subject}
               readOnly
               className="w-full border border-gray-300 p-2 rounded mb-2"
-              placeholder="Automatique Peugeot 3008"
+              placeholder=""
               required
             />
             {/* Champ Prénom */}

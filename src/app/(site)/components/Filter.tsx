@@ -87,7 +87,8 @@ import { GrPowerReset } from "react-icons/gr";
           <div className="flex flex-col justify-center gap-4 lg:flex-row md:flex-row sm:flex-col ">
             <div className="mb-4">
               <label htmlFor="year" className="block font-semibold mb-1">
-                Année : {filter.year === 0 ? "" : filter.year}
+                {/* si égal à zéro ne retourne pas de valeur si différent de zéro alors retournera la valeure */}
+                Année : {filter.year === 0 ? "" : filter.year} 
                 {/* Étiquette pour l'année sélectionnée */}
               </label>
               <input

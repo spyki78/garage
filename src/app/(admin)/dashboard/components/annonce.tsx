@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";// permet de naviguer entre les pages
+import toast from "react-hot-toast";// pour afficher des messages d'erreur ou de succès
 
 export const Annonce = ({
   id,
@@ -14,7 +14,7 @@ export const Annonce = ({
  
 }: any) => {
   const router = useRouter();
-  const handleValid = async () => {
+  const handleValid = async () => { // pour valider une annonce
     await fetch(`/api/annonce/${id}`, {
       method: "PUT",
       headers: {
@@ -35,23 +35,23 @@ export const Annonce = ({
     });
   };
 
-  const handleDelete = async () => {
-    await fetch(`/api/car/${id}`, {
+  const handleDelete = async () => { // Fonction asynchrone pour gérer la suppression d'une annonce
+    await fetch(`/api/car/${id}`, { // Utilisation de l'API fetch pour envoyer une requête DELETE à l'URL spécifiée
       method: "DELETE",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (!res.ok) {
-        res.json().then((errors: any) => {
+    }).then((res) => { // Gestion de la réponse de la requête
+      if (!res.ok) { // Si la réponse n'est pas OK (statut différent de 200)
+        res.json().then((errors: any) => {// Analyse de la réponse JSON en cas d'erreur
           errors.map((error: any) => {
-            toast.error(error);
+            toast.error(error);// Affichage des erreurs à l'aide d'une bibliothèque de notifications (toast)
           });
         });
-      } else {
-        toast.success("avis supprimé");
-        router.refresh();
+      } else {// Si la réponse est OK
+        toast.success("avis supprimé"); // Notification de succès
+        router.refresh();// Rafraîchissement de la page (assumant l'utilisation d'un objet router avec une méthode refresh())
       }
     });
   };

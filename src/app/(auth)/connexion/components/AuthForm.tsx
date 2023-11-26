@@ -4,7 +4,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
-import { BiHide, BiShow } from "react-icons/bi"
+import { BiHide, BiShow } from "react-icons/bi" // masquer ou afficher le mot de passe.
 
   const AuthForm: React.FC = () => {
   const [email, setEmail] = useState("");
