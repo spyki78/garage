@@ -33,6 +33,7 @@ export const FilterSection = ({cars} : any) => {
 
   useEffect(() => {
     handleFilterChange(initialFilterState);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className=" my-auto mx-auto mt-44">
