@@ -28,22 +28,19 @@ Le projet Garage V parrot a pour objectif d'offrir aux clients une plateforme co
 
 Pour installer et exécuter ce projet localement, suivez ces étapes :
 
-1. **Téléchargement de Node.js Sur Windows  :**
+
+1. **Téléchargement de Visual Studio Code :**
+    Allez sur le site officiel de Visual Studio Code à l'adresse https://code.visualstudio.com/.
+    Téléchargez la version appropriée pour votre système d'exploitation (Windows, macOS ou Linux).
+    Suivez les instructions d'installation pour installer Visual Studio Code sur votre ordinateur.
+
+2. **Lancement de Visual Studio Code :**
+    Une fois l'installation terminée, lancez Visual Studio Code à partir du menu de démarrage (Windows), du Finder (macOS) ou de votre terminal (Linux) en tapant code.
+
+3. **Téléchargement de Node.js Sur Windows  :**
    Ouvrez votre navigateur web et allez sur le site officiel de Node.js à l'adresse https://nodejs.org/.
    Sur la page d'accueil, vous verrez deux versions recommandées : "LTS" (Long Term Support) et "Current". Il est généralement recommandé de choisir la version LTS pour la stabilité à moins que vous n'ayez besoin de fonctionnalités spécifiques de la version "Current".
    Cliquez sur la version que vous souhaitez installer. Cela téléchargera le fichier d'installation pour Windows.
-
-2. **Exécutez le programme d'installation  :**   
-   Après avoir téléchargé le fichier d'installation, double-cliquez dessus pour l'exécuter.
-   Suivez les instructions de l'assistant d'installation. Vous pouvez laisser les options par défaut pour la plupart des cas d'utilisation.
-
-   
-3. **Vérification de l'installation  :**  
-   Une fois l'installation terminée, ouvrez votre invite de commande (ou PowerShell) et tapez les commandes suivantes pour vérifier que Node.js et npm (Node Package Manager) sont installés avec succès :
-   node -v
-   npm -v
-
-   Vous devriez voir les numéros de version de Node.js et npm s'afficher dans la fenêtre de commande, ce qui indique que l'installation a réussi.
 
 4. **Node.js Sur macOS  :**
    Si vous avez déjà installé Homebrew, ouvrez votre terminal. Si vous ne l'avez pas installé, vous pouvez le faire en suivant les instructions sur le site officiel de  Homebrew : https://brew.sh/.
@@ -61,196 +58,38 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
    sudo apt install nodejs npm
    pour la vérification de l'installation terminée meme procédé que pour la version windows.
 
-6. **Téléchargement de Visual Studio Code :**
-    Allez sur le site officiel de Visual Studio Code à l'adresse https://code.visualstudio.com/.
-    Téléchargez la version appropriée pour votre système d'exploitation (Windows, macOS ou Linux).
-    Suivez les instructions d'installation pour installer Visual Studio Code sur votre ordinateur.
+6. **Exécutez le programme d'installation  :**   
+   Après avoir téléchargé le fichier d'installation, double-cliquez dessus pour l'exécuter.
+   Suivez les instructions de l'assistant d'installation. Vous pouvez laisser les options par défaut pour la plupart des cas d'utilisation.
 
-7. **Lancement de Visual Studio Code :**
-    Une fois l'installation terminée, lancez Visual Studio Code à partir du menu de démarrage (Windows), du Finder (macOS) ou de votre terminal (Linux) en tapant code.
-
-8. **Installation des extensions Recommandées visual Studio Code :**
-
-    Auto Close Tag
-    Auto Rename Tag
-    ES7 + react
-    Eslint
-    Live Server
-    Prettier code formatter
-    Prisma
-    Tailwind CSS intelliSense
-
+7. **Vérification de l'installation sur Windows  :**  
+   Une fois l'installation terminée, ouvrez votre invite de commande (ou PowerShell) et tapez les commandes suivantes pour vérifier que Node.js et npm (Node Package Manager) sont installés avec succès :
+   node -v
+   Vous devriez voir les numéros de version de Node.js s'afficher dans la fenêtre de commande, ce qui indique que l'installation a réussi.
 
 9. **Cloner le dépôt depuis GitHub :**
-
     Ouvrez votre terminal ou votre invite de commande
     Utilisez la commande cd pour vous déplacer vers le répertoire où vous souhaitez télécharger le projet.
     Utilisez la commande git clone pour cloner le dépôt GitHub
     par l'URL du dépôt GitHub suivante : 
-    par exemple : 
     git clone https://github.com/spyki78/garage.git
 
 10. **Navigation vers le répertoire du projet :**
     Utilisez la commande cd pour naviguer dans le répertoire du projet que vous venez de cloner.
-    cd garage
+     de base si pas de chemin identifié : 
+     cd/Users/Utilisateur/garage
 
-
-11. **Utilisation de pnpm et installations des dependances :**
-    Ouvrez votre terminal ou votre invite de commande.
-    Naviguez jusqu'au répertoire de votre projet Next.js en utilisant la commande cd.
-
-    Une fois dans le répertoire du projet, utilisez la commande suivante pour installer les dépendances du projet à l'aide de pnpm (Node Package Manager) :
-
-    pnpm install
-
-    Cette commande installera toutes les dépendances nécessaires à partir du fichier package.json du projet.
+11. **Ouverture du dossier via le terminal de visual studio code :**
+    code C:\Users\Utilisateur\garage
 
 12. **Accédez à votre application :**
-
+    Apliquer dans le terminal de visual studio code
+    dans le répertoire concerné du dossier 
+    pnpm run dev 
+    afin de lancer l'application sur le navigateur
     Ouvrez votre navigateur web et accédez à l'application en entrant l'URL suivante dans la barre d'adresse :
     http://localhost:3000
 
-13. **Création du compte administrateur:**   
-    Créez un modèle Prisma pour les administrateurs :
-    Si vous n'en avez pas déjà un, créez un modèle Prisma pour représenter les administrateurs dans votre base de données. dans le terminal au préalable installer prisma :
-    
-    pnpm install -g prisma
-
-    Cette commande téléchargera et installera Prisma sur votre système.
-    Vérifiez l'installation
-
-    prisma -v
-
- ensuite dans le dossier prisma puis fichier shema.prisma
- 
- mettre  :
-    generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-
-model User {
-  id           Int              @id @default(autoincrement())
-  email        String           @unique
-  hashed_password     String
-  isAdmin      Boolean @default(false)
-  
-
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-}
-
-puis dans le dossier API
-
-créer le dossier auth puis dans auth le dossier [...nextauth]
-ajouter un fichier au dossier 
-route.ts
-
-dans ce meme fichier mettre : 
-
-
-// Import des modules et packages nécessaires
-
-import CredentialsProvider from "next-auth/providers/credentials";
-import { PrismaAdapter } from "@auth/prisma-adapter";
-import { prisma } from "@/../libs/prismadb";
-import NextAuth, { AuthOptions } from "next-auth";
-import { z } from "zod";
-import bcrypt from "bcrypt";
-
-// Définition du schéma de validation des données utilisateur avec Zod
-const UserBodyScheme = z.object({
-  email: z
-    .string({
-      required_error: "Le champs email est requis !", // Message d'erreur si le champ est vide
-      invalid_type_error: "Le champs email est requis !",// Message d'erreur si le champ est au mauvais format
-    })
-    .email("Le champs email n'est pas valide !")// Validation du format de l'email
-    .trim(),// Suppression des espaces blancs autour de l'email
-  password: z
-    .string({
-      required_error: "Le champs mot de passe est requis !", // Message d'erreur si le champ est vide
-      invalid_type_error: "Le champs mot de passe est requis !",// Message d'erreur si le champ est au mauvais format
-    })
-    .trim(), // Suppression des espaces blancs autour du mot de passe
-});
-
-// Définition du type User
-type User = {
-  id: number;
-  name: string;
-  email: string;
-  // ...
-};
-
-// Configuration de NextAuth.js
-export const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma) as any,// Utilisation de Prisma comme adaptateur
-  providers: [
-    // utilisation d'un non provider / general avec mail et mot de passe
-    CredentialsProvider({
-      // Utilisation d'un fournisseur d'authentification "credentials" (email/mot de passe)
-      name: "credentials",
-      credentials: {
-        email: { label: "email", type: "email" }, // Configuration du champ email
-        password: { label: "password", type: "password" }, // Configuration du champ mot de passe
-      },
- // Fonction d'autorisation pour valider les informations d'identification
-      async authorize(credentials: any) {
-        const userBody = UserBodyScheme.parse(credentials);// Validation des données utilisateur avec Zod
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email,
-          },
-        });
-
-        if (!user || !user?.hashed_password) {
-          throw new Error("Invalide Credential"); // Erreur si les informations d'identification sont invalides
-        }
-
-        const isCorrectPassword = await bcrypt.compare(
-          credentials.password,
-          user.hashed_password
-        );
-
-        if (!isCorrectPassword) {
-          throw new Error("Invalide Credential"); // Erreur si le mot de passe est incorrect
-        }
-
-        return { user } as any; // Renvoie l'utilisateur en cas de succès
-      },
-    }),
-  ],
-  debug: process.env.NODE_ENV == "development", // Activation du mode débogage en développement
-  session: {
-    strategy: "jwt", // Utilisation de JSON Web Tokens pour gérer les sessions
-  },
-  callbacks: {
-    async jwt({ token, user }: { token: any; user: any }) {
-      return { ...token, ...user };
-    },
-    async session({
-      session,
-      user,
-      token,
-    }: {
-      session: any;
-      token: any;
-      user: any;
-    }) {
-      return token;
-    },
-  },
-  secret: process.env.NEXTAUTH_SECRET, // Clé secrète pour la sécurité
-};
-
-// Création du gestionnaire d'authentification NextAuth
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST, UserBodyScheme };
 
 Imports :
 Les premières lignes importent les modules et packages nécessaires à la configuration de l'authentification. Cela inclut NextAuth.js pour gérer l'authentification, le package PrismaAdapter pour utiliser Prisma comme adaptateur d'authentification, ainsi que d'autres dépendances comme Zod (un outil de validation de schéma) et bcrypt (pour le hachage et la comparaison des mots de passe).
@@ -275,66 +114,6 @@ Enfin, le code exporte un gestionnaire d'authentification en utilisant NextAuth.
 
 Ce fichier de configuration définit la logique d'authentification de votre application Next.js en utilisant NextAuth.js et Prisma comme adaptateur. Il permet aux utilisateurs de s'authentifier en fournissant leur email et leur mot de passe, puis il vérifie ces informations par rapport à la base de données. Si les informations sont valides, l'utilisateur est authentifié et un jeton JWT est généré pour gérer les sessions utilisateur.
 
-puis créer un dossier user dans api et dans ce dossier un fichier route.ts
-
-import { NextResponse } from "next/server";
-import { z } from "zod";
-import bcrypt from "bcrypt";
-import { prisma } from "@/../libs/prismadb";
-
-/* pour configurer un shéma de user souhaitez pour la validation du formulaire*/
-const UserBodyScheme = z.object({
-  email: z
-    .string({
-      required_error: "Le champs email est requis !",
-      invalid_type_error: "Le champs email est requis !",
-    })
-    .email("Le champs email n'est pas valide !")
-    /* supprime les espaces auto*/
-    .trim(),
-  password: z
-    .string({
-      required_error: "Le champs mot de passe est requis !",
-      invalid_type_error: "Le champs mot de passe est requis !",
-    })
-    .min(8, { message: "Must be 8 or more characters long" })
-    .max(20, { message: "Mot de passe 20 carac" })
-    .regex(/[A-Z]/, {
-      message: "Le champ mot de passe doit contenir au moins une majuscule !",
-    })
-    .regex(/[0-9]/, {
-      message: "Le champ mot de passe doit contenir au moins un chiffre !",
-    })
-    .regex(/[@#$%^&+=!:/?~]/, {
-      message:
-        "Le champ mot de passe doit contenir au moins un caractère spécial !",
-    })
-    .trim(),
-});
-
-
-
-export async function POST(request: Request) {
-  try {
-    /*recupere les données du body*/
-    const body = await request.json();
-    /*Body doit etre identique aux configurations sinon retour error*/
-    const userBody = UserBodyScheme.parse(body);
-    /*securisation du mot de passe*/
-    const hashed_password = await bcrypt.hash(userBody.password, 12);
-    const user = await prisma.user.create({
-      data: {
-        email: userBody.email,
-        hashed_password: hashed_password,
-      },
-    });
-
-    return NextResponse.json(user, { status: 201 });
-  } catch (error: any) {
-    console.log(error);
-    return new NextResponse(error, { status: 500 });
-  }
-}
 
 
     Ce code semble gérer l'inscription d'un nouvel utilisateur dans une base de données en utilisant des données soumises via une requête HTTP POST. Il effectue des vérifications de sécurité telles que la validation des données utilisateur et le hachage du mot de passe avant de l'enregistrer dans la base de données.
@@ -362,8 +141,7 @@ export async function POST(request: Request) {
     mot de passe  : Jeudi78!
 
 
-
-16. **Création nouvel employé:**
+14. **Création nouvel employé:**
 
     une fois connecté en tant Admin
     vous arriverez sur  http://localhost:3000/dashboard
@@ -383,21 +161,22 @@ export async function POST(request: Request) {
 
     vous remarquerez qu'en tant qu'un employé vous ne pouvez pas créer de compte.
     
-17. **Dashboard utlisation:**
+15. **Dashboard utlisation:**
 
     - de supprimer ou valider les avis
     - de supprimer les messages formumlaire de contact
     - de supprimer ou ajouter les annonces voitures
 
-18. **Création annonces voitures:**
+16. **Création annonces voitures:**
 
      se rendre sur http://localhost:3000/dashboard/voiture
 
      afin de pouvoir créer une voiture.
     
-19. **posibilité de supprimer les comptes et annonce ou formulaire via prisma studio:**
+17. **posibilité de supprimer les comptes et annonce ou formulaire via prisma studio:**
      executer la commmande suivante dans votre terminal
      pnpm prisma studio
+     la création d'un administrateur se fait via ce portail
 
 
 ## Utilisation 
