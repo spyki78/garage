@@ -161,7 +161,7 @@ import { GrPowerReset } from "react-icons/gr";
         {carsDataFilter.map((car :any, key : any) => (
           <CarCard
             key={key}
-            title={car.name}
+            title={car.title}
             year={car.year}
             price={car.price}
             mileage={car.mileage}

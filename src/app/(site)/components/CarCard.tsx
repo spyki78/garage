@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
+
 // Interface pour représenter les données de la voiture
 interface CarData {
   title: string;
@@ -230,8 +231,8 @@ function CarCard({
       <section className="border-2 border-secondaryColor rounded-xl p-5">
         
         {/* Titre de l'annonce */}
-        <h2 className="text-xl font-bold flex justify-center items-center shadow-lg p-2 rounded-lg pt-5 pb-10">
-          {title}
+        <h2 className="text-xl flex justify-center items-center shadow-lg p-2 rounded-lg pt-5 pb-10">
+         {title}
         </h2>
 
         {/* Descriptif de la voiture de la voiture  */}

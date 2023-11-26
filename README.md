@@ -87,7 +87,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     Utilisez la commande cd pour vous déplacer vers le répertoire où vous souhaitez télécharger le projet.
     Utilisez la commande git clone pour cloner le dépôt GitHub
     par l'URL du dépôt GitHub suivante : 
-
+    par exemple : 
     git clone https://github.com/spyki78/garage.git
 
 10. **Navigation vers le répertoire du projet :**
@@ -114,7 +114,7 @@ Pour installer et exécuter ce projet localement, suivez ces étapes :
     Créez un modèle Prisma pour les administrateurs :
     Si vous n'en avez pas déjà un, créez un modèle Prisma pour représenter les administrateurs dans votre base de données. dans le terminal au préalable installer prisma :
     
-    npm install -g prisma
+    pnpm install -g prisma
 
     Cette commande téléchargera et installera Prisma sur votre système.
     Vérifiez l'installation
@@ -387,7 +387,7 @@ export async function POST(request: Request) {
 
     - de supprimer ou valider les avis
     - de supprimer les messages formumlaire de contact
-    - de supprimer les annonces voitures
+    - de supprimer ou ajouter les annonces voitures
 
 18. **Création annonces voitures:**
 
@@ -396,7 +396,7 @@ export async function POST(request: Request) {
      afin de pouvoir créer une voiture.
     
 19. **posibilité de supprimer les comptes et annonce ou formulaire via prisma studio:**
-     excuter la commmande suivante dans votre terminal
+     executer la commmande suivante dans votre terminal
      pnpm prisma studio
 
 
