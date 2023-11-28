@@ -2,10 +2,13 @@
 
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-
+// Composant fonctionnel Review prenant des propriétés (id, name, message, rating, isValid)
 export const Review = ({ id, name, message, rating, isValid }: any) => {
+  // Initialisation du hook de navigation
   const router = useRouter();
+  // Fonction asynchrone pour valider un avis
   const handleValid = async () => {
+    // Appel à l'API pour mettre à jour l'état de validation de l'avis
     await fetch(`/api/review/${id}`, {
       method: "PUT",
       headers: {
@@ -13,20 +16,24 @@ export const Review = ({ id, name, message, rating, isValid }: any) => {
         "Content-Type": "application/json",
       },
     }).then((res) => {
+      // Vérification de la réussite de la requête
       if (!res.ok) {
+        // En cas d'erreur, affichage des erreurs via les notifications toast
         res.json().then((errors: any) => {
           errors.map((error: any) => {
             toast.error(error);
           });
         });
       } else {
+         // En cas de succès, affichage d'une notification de succès et actualisation de la page
         toast.success("avis validé");
         router.refresh();
       }
     });
   };
-
+ // Fonction asynchrone pour supprimer un avis
   const handleDelete = async () => {
+    // Appel à l'API pour supprimer l'avis
     await fetch(`/api/review/${id}`, {
       method: "DELETE",
       headers: {
@@ -34,13 +41,16 @@ export const Review = ({ id, name, message, rating, isValid }: any) => {
         "Content-Type": "application/json",
       },
     }).then((res) => {
+      // Vérification de la réussite de la requête
       if (!res.ok) {
+         // En cas d'erreur, affichage des erreurs via les notifications toast
         res.json().then((errors: any) => {
           errors.map((error: any) => {
             toast.error(error);
           });
         });
       } else {
+         // En cas de succès, affichage d'une notification de succès et actualisation de la page
         toast.success("avis supprimé");
         router.refresh();
       }

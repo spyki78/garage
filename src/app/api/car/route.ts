@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
     const title: string | null = data.get("title") as string;// crée une variable  title  qui contient le titre de l'annonce. 
     const price: number | null = data.get("price") as unknown as number;
-    const year: string| null = data.get("year") as unknown as string;
+    const year: string | null = data.get("year") as unknown as string;
     const mileage: number | null = data.get("mileage") as unknown as number;
     const features: string | null = data.get("features") as string;
     const equipments: string | null = data.get("equipments") as string;
