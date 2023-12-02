@@ -77,6 +77,8 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async jwt({ token, user }: { token: any; user: any }) {
+      // Cette fonction est appelée lorsque le jeton JWT est créé.
+      // Elle peut être utilisée pour ajouter des informations supplémentaires au jeton.
       return { ...token, ...user };
     },
     async session({
@@ -88,6 +90,9 @@ export const authOptions: AuthOptions = {
       token: any;
       user: any;
     }) {
+
+      // Cette fonction est appelée lorsque le jeton JWT est créé.
+       // Elle peut être utilisée pour ajouter des informations supplémentaires à la session.
       return token;
     },
   },
