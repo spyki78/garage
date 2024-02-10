@@ -11,7 +11,7 @@ Le projet Garage V parrot a pour objectif d'offrir aux clients une plateforme co
 - **Langage CSS :** CSS3
 - **Framework Front-end :** Next.js
 - **Langage de Programmation :** TypeScript
-- **Plateforme Serveur :** Node.js
+- **Plateforme Serveur :** Node.js pour le local
 - **ORM (Object-Relational Mapping) :** Prisma
 - **Hébergement :** GitHub (pour le code source) et Vercel (pour le déploiement)
 - **Base de Données :** PostgreSQL avec Neon
@@ -116,7 +116,7 @@ Ce fichier de configuration définit la logique d'authentification de votre appl
 
 
 
-    Ce code semble gérer l'inscription d'un nouvel utilisateur dans une base de données en utilisant des données soumises via une requête HTTP POST. Il effectue des vérifications de sécurité telles que la validation des données utilisateur et le hachage du mot de passe avant de l'enregistrer dans la base de données.
+    Ce code gére l'inscription d'un nouvel utilisateur dans une base de données en utilisant des données soumises via une requête HTTP POST. Il effectue des vérifications de sécurité telles que la validation des données utilisateur et le hachage du mot de passe avant de l'enregistrer dans la base de données.
 
     Côté client (Front-end) :
 

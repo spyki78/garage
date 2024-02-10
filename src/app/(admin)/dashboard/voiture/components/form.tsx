@@ -70,7 +70,7 @@ export const Form = () => {
           id="title"
           name="title"
           className="
-          border border-secondaryColor my-5 rounded-xl
+          border border-secondaryColor my-5 pt-5 pb-5 rounded-xl text-center 
           "
         />
         <p>Prix</p>
@@ -79,8 +79,9 @@ export const Form = () => {
           type="number"
           id="price"
           name="price"
+          style={{textAlign: 'center'}}
           className="
-          border border-secondaryColor my-5 rounded-xl
+          border border-secondaryColor my-5 mx-5 rounded-xl pt-5 pb-5
           "
         />
         <p>Année</p>
@@ -90,7 +91,7 @@ export const Form = () => {
           id="year"
           name="year"
           className="
-          border border-secondaryColor my-5 px-8 rounded-xl
+          border border-secondaryColor my-5 px-8 rounded-xl pt-5 pb-5
           "
         />
          <p>kilométrage</p>
@@ -99,8 +100,9 @@ export const Form = () => {
           type="text"
           id="mileage"
           name="mileage"
+          style={{textAlign: 'center'}}
           className="
-          border border-secondaryColor my-5 rounded-xl
+          border border-secondaryColor my-5 rounded-xl pt-5 pb-5
           "
         />
         <p>Caractéristiques</p>
@@ -109,8 +111,9 @@ export const Form = () => {
           type="text"
           id="features"
           name="Features"
+          style={{textAlign: 'center'}}
           className="
-          border border-secondaryColor my-5 rounded-xl
+          border border-secondaryColor my-5 rounded-xl pt-5 pb-5
           "
         />
         <p>Equipements & Options</p>
@@ -119,8 +122,9 @@ export const Form = () => {
           type="text"
           id="equipements"
           name="equipements"
+          style={{textAlign: 'center'}}
           className="
-          border border-secondaryColor my-5 rounded-xl
+          border border-secondaryColor my-5 rounded-xl pt-5 pb-5
           "
         />
 
