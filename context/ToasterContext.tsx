@@ -1,4 +1,4 @@
-"user client";
+"user client"; // pour afficher les notifications.
 
 import { Toaster } from "react-hot-toast";
 

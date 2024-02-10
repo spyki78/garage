@@ -1,4 +1,4 @@
-export const getUniqFileName = ({
+export const getUniqFileName = ({ // pour le stockage d'images et pour éviter les doublons sinon image supprimé.
   carId,
   fileExtension,
 }: {
