@@ -15,13 +15,11 @@ interface User {
   isAdmin?: boolean | null | undefined; // Ajoutez cette propriété pour indiquer que isAdmin est optionnel
 }
 
-
 export default async function Page() {
-
   // Récupération de la session utilisateur
   const session = await getServerSession(authOptions);
 
-// redirection vers la page de connexion si l'utilisateur n'est pas connecté
+  // redirection vers la page de connexion si l'utilisateur n'est pas connecté
   if (session === null) {
     redirect("/connexion");
   }
@@ -30,7 +28,7 @@ export default async function Page() {
   const user: User = session?.user || {};
 
   // Vérification si l'utilisateur est administrateur
-   const isAdmin = user.isAdmin || false; 
+  const isAdmin = user.isAdmin || false;
 
   // Récupération des avis, des contacts et des annonces
   const reviews = await prisma.review.findMany();
@@ -40,9 +38,10 @@ export default async function Page() {
   return (
     <div className="flex flex-col">
       <p className="dh text-center text-3xl lg:mt-72 md:mt-72">
-        Bienvenue {session?.user?.email && session?.user?.email.split('@')[0]} dans votre partie dashboard
+        Bienvenue {session?.user?.email && session?.user?.email.split("@")[0]}{" "}
+        dans votre partie dashboard
       </p>
-     
+
       {isAdmin && ( // Vérifie si l'utilisateur est administrateur avant de rendre le contenu suivant
         <div className="cursor-pointer lg:text-center justify-center lg:w-full flex items-center h-screen">
           {/* lien vers la page de création d'employé */}
@@ -71,14 +70,3 @@ export default async function Page() {
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
