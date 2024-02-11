@@ -3,6 +3,7 @@
 // Importations des modules nécessaires
 import { useState, FormEvent } from "react";
 import { toast } from "react-hot-toast";
+import { GrPowerReset } from "react-icons/gr";
 
 // Définition du composant LeaveReview
 const LeaveReview = () => {
@@ -50,6 +51,15 @@ const LeaveReview = () => {
         toast.success("Votre avis est crée");
       }
     });
+  };
+
+  
+  const handleReset = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    // Réinitialiser les valeurs du formulaire
+    setName("");
+    setMessage("");
+    setRating(0);
   };
 
   return (
@@ -112,17 +122,26 @@ const LeaveReview = () => {
           </select>
         </div>
 
-        <div className="w-full">
+        <div className="w-full flex justify-center">
           <button
             className="w-full py-2 mt-5 text-center bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl"
             type="submit"
           >
             Soumettre {/* Bouton de soumission du formulaire */}
           </button>
+
+ {/* Bouton pour réinitialiser le formulaire */}
+ <button
+            className="mt-4 px-2 text-white rounded-md bg-primaryColor ml-4"
+            type="button"
+            onClick={handleReset}
+          >
+           <GrPowerReset />
+          </button>
         </div>
       </form>
-    </div>
-  );
+      </div>
+    );
 };
 
 export default LeaveReview;
