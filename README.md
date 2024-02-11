@@ -128,7 +128,7 @@ Ce fichier de configuration définit la logique d'authentification de votre appl
 
     Ensuite, il y a une vérification pour s'assurer que l'utilisateur est connecté. Si la session est nulle (c'est-à-dire que l'utilisateur n'est pas connecté), la fonction effectue une redirection vers la page "/connexion". Cela signifie que si l'utilisateur n'est pas connecté, il est redirigé vers une page de connexion.
 
-    Après la vérification de la connexion, la fonction semble vérifier si l'utilisateur a le statut d'administrateur. La variable isAdmin est extraite de la session utilisateur 
+    Après la vérification de la connexion, la fonction vérifie si l'utilisateur a le statut d'administrateur. La variable isAdmin est extraite de la session utilisateur 
     (session.user) et est vérifiée. Si l'utilisateur n'est pas un administrateur (!isAdmin), une autre redirection vers la page de connexion est effectuée. Cela signifie que même si l'utilisateur est connecté, il doit également être un administrateur pour accéder à la page.
 
 

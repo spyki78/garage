@@ -174,7 +174,7 @@ function CarCard({
         className="flex justify-center"
         initial={{ opacity: initialOpacity ? 0 : 1 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 2 }}
       >
         <Image
           className="vt1 flex flex-col justify-center items-center lg:h-[200px] w-[300px] object-contain md:-mt-52"
@@ -186,7 +186,7 @@ function CarCard({
       </motion.div>
       <div className="mt-4">
         <h3
-          className="m-24 cursor-pointer text-lg font-bold flex justify-center rounded-xl bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50"
+          className="m-24 cursor-pointer text-lg font-bold flex justify-center rounded-xl bg-primaryColor opacity-120 transition duration-700 ease-in-out hover:opacity-50"
           onClick={() => setShowGallery(!showGallery)}
         >
           Galerie
@@ -269,6 +269,12 @@ function CarCard({
         </h3>
         {/* Affichage conditionnel du formulaire de contact */}
         {showContactForm && (
+
+        <motion.div
+        initial={{ opacity: 0, y: 40 }} // Style initial (avant l'animation)
+        animate={{ opacity: 1, y: 0 }}    // Style animé (après l'animation)
+        transition={{ duration: 0.8 }}    // Durée de l'animation
+        >
           <form onSubmit={handleSubmit}>
             <label htmlFor="subject">Objet :</label>
             <input
@@ -349,6 +355,7 @@ function CarCard({
               Soumettre
             </button>
           </form>
+          </motion.div>
         )}
       </div>
     </div>

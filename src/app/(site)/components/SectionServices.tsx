@@ -1,3 +1,5 @@
+"use client";
+
 import { Service } from "./Service";
 import voiture from "../../../../public/images/voiture.webp";
 import suspension from "../../../../public/images/suspension.webp";
@@ -7,7 +9,12 @@ import distribution from "../../../../public/images/distribution.webp";
 import direction from "../../../../public/images/direction.webp";
 import mecano from "../../../../public/images/mecano.png";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+
 export const SectionServices = () => {
+
+
   return (
     <section className="mt-64">
       <div className="fond flex bg-primaryColor justify-center items-center w-full">
@@ -24,6 +31,7 @@ export const SectionServices = () => {
       </div>
 
       <div className="grid lg:grid-cols-3 lg:gap-3 md:grid-cols-2 md:lg:gap-2 sm:grid-cols-1 sm:gap-0 pt-4 m-8 md:mt-10">
+     
         <Service
           image={voiture}
           title="Prestations Fréquentes"
@@ -48,7 +56,9 @@ Remplacement Disques & Plaquettes AR
 Remplacement liquide de freins
 Remplacement Plaquettes AR
 "
+
         />
+      
         <Service
           image={distribution}
           title="Distribution"
@@ -76,6 +86,8 @@ Remplacement triangle ou bras de suspension
 
 "
         />
+
+
       </div>
     </section>
   );
