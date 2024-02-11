@@ -64,7 +64,7 @@ export default async function Page() {
       </div>
 
       <div className="flex flex-col">
-        <h2 className="text-2xl my-12 text-center lg:-mt-64">Annonces</h2>
+        <h2 className="text-2xl my-12 text-center lg:mt-40">Annonces</h2>
         <Annonces annonces={annonces} />
       </div>
     </div>
