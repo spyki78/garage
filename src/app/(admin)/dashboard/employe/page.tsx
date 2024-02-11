@@ -11,7 +11,9 @@ async function page() {
   }
  
   const { isAdmin  } : any = session.user;
+  // Vérifier si l'utilisateur est un administrateur
   if (!isAdmin) {
+     // Rediriger l'utilisateur vers la page de connexion s'il n'est pas un administrateur
     redirect("/connexion");
   }
 

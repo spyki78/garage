@@ -26,7 +26,7 @@ const UserBodyScheme = z.object({
     .regex(/[0-9]/, {
       message: "Le champ mot de passe doit contenir au moins un chiffre !",
     })
-    .regex(/[@#$%^&+=!:/?~]/, {
+    .regex(/[@#$%^&+=!:/?~[](){}\*`§]/, {
       message:
         "Le champ mot de passe doit contenir au moins un caractère spécial !",
     })
@@ -43,13 +43,15 @@ export async function POST(request: Request) {
     const userBody = UserBodyScheme.parse(body);
     /*securisation du mot de passe*/
     const hashed_password = await bcrypt.hash(userBody.password, 12);
+
+    // Crée un nouvel utilisateur dans la base de données avec les données fournies
     const user = await prisma.user.create({
       data: {
         email: userBody.email,
         hashed_password: hashed_password,
       },
     });
-
+// Retourne une réponse avec les données de l'utilisateur créé et le statut 201 (Créé)
     return NextResponse.json(user, { status: 201 });
   } catch (error: any) {
     console.log(error);

@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client"; //Ce code utilise Prisma pour interagir avec la base de données dans une application
 
 declare global {
     var prisma: PrismaClient | undefined
