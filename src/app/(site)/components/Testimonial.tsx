@@ -15,6 +15,7 @@ export const Testimonial = ({
   name,
   rating,
 }: TestimonialProps) => {
+  
   // État pour afficher les étoiles basées sur le nombre de reviews
   const [stars, setStars] = useState("");
   useEffect(() => {

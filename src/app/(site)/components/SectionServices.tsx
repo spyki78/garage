@@ -9,7 +9,7 @@ import distribution from "../../../../public/images/distribution.webp";
 import direction from "../../../../public/images/direction.webp";
 import mecano from "../../../../public/images/mecano.png";
 import Image from "next/image";
-import { motion } from "framer-motion";
+
 
 
 export const SectionServices = () => {
