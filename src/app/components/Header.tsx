@@ -1,3 +1,5 @@
+
+
 import Image from "next/image";
 import logo from "../../../public/images/logo.png";
 import Link from "next/link";
@@ -31,7 +33,7 @@ export const Header = async () => {
                 </p>
               </Link>
               <Link href="/les-occcasions">
-                <p className="occ  text-center justify-center lg:text-xl md:text-lg rounded-xl mt-20 pl-8 pr-8 pt-3 pb-3 md:ml-20 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50">
+                <p className="occ text-center justify-center lg:text-xl md:text-lg rounded-xl mt-20 pl-8 pr-8 pt-3 pb-3 md:ml-20 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50">
                   Les occasions
                 </p>
               </Link>

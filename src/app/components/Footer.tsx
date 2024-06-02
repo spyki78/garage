@@ -1,4 +1,6 @@
+import React from "react";
 import Image from "next/image";
+import Link from 'next/link'; // Pour les liens classiques
 import logo from "../../../public/images/logo.png";
 export const Footer = () => {
   return (
@@ -42,6 +44,12 @@ export const Footer = () => {
         </div>
       </section>
       <div className="flex flex-col items-center">
+          
+      <Link href="/MentionsLegal">
+          <p className="text-white text-center mb-10 pl-4 pr-4 pt-3 pb-3 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl">
+            Mentions Légales
+          </p>
+        </Link>
         <p className="sign text-center lg:-mt-5">@spyki2023</p>
       </div>
     </footer>

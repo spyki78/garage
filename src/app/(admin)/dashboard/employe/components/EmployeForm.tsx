@@ -102,7 +102,7 @@ export const EmployeForm = () => {
             className="w-full py-2 mt-5 text-center bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl"
             type="submit"
           >
-            Soumettre
+            
           </button>
         </div>
       </form>
