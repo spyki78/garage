@@ -2,7 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from 'next/link'; // Pour les liens classiques
 import logo from "../../../public/images/logo.png";
+
 export const Footer = () => {
+
+
   return (
     <footer className="foot footer-container bg-gray-900 mt-10 mx-auto sm:my-auto">
       <section className="flex flex-col items-center justify-between md:flex md:flex-row lg:mt-64 ">
@@ -45,7 +48,7 @@ export const Footer = () => {
       </section>
       <div className="flex flex-col items-center">
           
-      <Link href="/MentionsLegal">
+      <Link href="/mentions">
           <p className="text-white text-center mb-10 pl-4 pr-4 pt-3 pb-3 bg-primaryColor opacity-120 transition duration-300 ease-in-out hover:opacity-50 rounded-xl">
             Mentions Légales
           </p>
