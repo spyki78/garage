@@ -53,7 +53,7 @@ export const Footer = () => {
             Mentions Légales
           </p>
         </Link>
-        <p className="sign text-center lg:-mt-5">@spyki2023</p>
+        <p className="sign text-center lg:-mt-5">@spyki2024</p>
       </div>
     </footer>
   );
