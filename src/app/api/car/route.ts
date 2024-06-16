@@ -1,4 +1,4 @@
-import { writeFile } from "fs/promises"; // mporte le module  writeFile  qui permet d'écrire des fichiers dans le système de fichiers. 
+import { writeFile } from "fs/promises"; // importe le module  writeFile  qui permet d'écrire des fichiers dans le système de fichiers. 
 import { NextResponse } from "next/server"; // importe le type  NextResponse  qui permet de créer des réponses HTTP. 
 import { getUniqFileName } from "../../../../libs/utiles";// importe la fonction  getUniqFileName  qui permet de générer un nom de fichier unique pour les images. 
 import { prisma } from "@/../libs/prismadb"; // importe le module  prisma  qui permet d'interagir avec la base de données Prisma. 
