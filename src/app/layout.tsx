@@ -16,6 +16,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  
   return (
     <html lang="fr">
       <body>
@@ -23,7 +25,7 @@ export default function RootLayout({
           <Header />
           {children}
           <ScrollToTopButton />
-          <Footer />   
+          <Footer/>   
       </body>
     </html>
   );
